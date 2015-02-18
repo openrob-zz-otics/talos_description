@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package>
+  <name>talos_description</name>
+  <version>1.0.0</version>
+  <description>The talos_description package</description>
+
+  <!-- One maintainer tag required, multiple allowed, one person per tag --> 
+  <!-- Example:  -->
+  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+  <maintainer email="noobaca2@gmail.com">Devon Ash</maintainer>
+  <maintainer email="johnhe@openrobotics.com">John He</maintainer>
+
+  <license>BSD</license>
+
+  <!-- <url type="website">http://wiki.ros.org/rviztest</url> -->
+  <url type="website">http://openrobotics.ca</url>
+
+  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+  <author email="johnhe@openrobotics.com">John He</author>
+  <author email="noobaca2@gmail.com">Devon Ash</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+
+  <export>
+
+  </export>
+</package>

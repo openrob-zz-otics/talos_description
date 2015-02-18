@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+
+<xacro:property name="scale" value="0.001" />
+<xacro:property name="PI" value="3.14159" />
+
+<xacro:property name="base_width" value="0.62265" />
+<xacro:property name="base_height" value="0.37817" />
+<xacro:property name="base_mass" value="0.22" />
+
+<xacro:property name="body_width" value="0.4324" />
+<xacro:property name="body_height" value="1.00318" />
+<xacro:property name="body_mass" value="0.22" />
+
+<xacro:property name="shoulder_length" value="0.2" />
+<xacro:property name="shoulder_short_length" value="0.095" />
+<xacro:property name="shoulder_offset" value="0.035" />
+<xacro:property name="shoulder_width" value="0.10635" />
+<xacro:property name="shoulder_height" value="0.22" />
+<xacro:property name="shoulder_mass" value="0.22" />
+
+<xacro:property name="upper_arm_length" value="0.55" />
+<xacro:property name="upper_arm_short_length" value="0.4" />
+<xacro:property name="upper_arm_width" value="0.02" />
+<xacro:property name="upper_arm_height" value="0.15" />
+<xacro:property name="upper_arm_mass" value="0.22" />
+
+<xacro:property name="elbow_bracket_short_length" value="0.129" />
+<xacro:property name="elbow_bracket_length" value="0.151" />
+<xacro:property name="elbow_bracket_width" value="0.0651" />
+<xacro:property name="elbow_bracket_height" value=".2073" />
+<xacro:property name="elbow_bracket_mass" value="0.22" /> 
+
+<xacro:property name="elbow_block_short_length" value="0.106" />
+<xacro:property name="elbow_block_offset" value="0.0315" />
+<xacro:property name="elbow_block_length" value="0.16822" />
+<xacro:property name="elbow_block_width" value="0.06352" />
+<xacro:property name="elbow_block_height" value="0.19493" />
+<xacro:property name="elbow_block_mass" value="0.22" />
+
+<xacro:property name="lower_arm_length" value="0.41219" />
+<xacro:property name="lower_arm_short_length" value="0.345" /> <!--X Y--> <!-- theirs ours-->
+<xacro:property name="lower_arm_width" value="0.0635" /> <!--Z X-->
+<xacro:property name="lower_arm_height" value="0.14" /> <!--Y Z-->
+<xacro:property name="lower_arm_mass" value="0.22" />
+
+<xacro:macro name="inertial_template" params="mass length width height">
+ <inertial>
+  <mass value="${mass}"/>
+  <inertia ixx="${1/12*mass*(length*length+height*height)}" ixy="0.0" ixz="0.0" iyy="${1/12*mass*(length*length+width*width)}" iyz="0.0" izz="${1/12*mass*(width*width+height*height)}"/>
+ </inertial>
+</xacro:macro>
+
+<link name="base_link">
+  <visual>
+    <origin xyz="0 0 ${base_height/2}" rpy="0 0 0"/>
+    <geometry>
+      <box size="${base_width} ${base_width} ${base_height}" />
+    </geometry>
+    <material name="white">
+     <color rgba="1 1 1 1"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0 0 ${base_height/2}" rpy="0 0 0"/>
+    <geometry>
+      <box size="${base_width} ${base_width} ${base_height}" />
+    </geometry>
+  </collision>
+  <xacro:inertial_template mass="${base_mass}" length="${base_width}" width="${base_width}" height="${base_height}"/>
+</link>
+ 
+<link name="body_link">
+ <visual>
+  <origin xyz="0 0 ${body_height/2}" rpy="0 0 0"/>
+  <geometry>
+     <box size="${body_width} ${body_width} ${body_height}" />
+  </geometry>
+  <material name="white">
+   <color rgba="1 1 1 1"/>
+  </material>
+ </visual>
+ <collision>
+  <origin xyz="0 0 ${body_height/2}" rpy="0 0 0"/>
+  <geometry>
+   <box size="${body_width} ${body_width} ${body_height}" />
+  </geometry>
+ </collision>
+ <xacro:inertial_template mass="${body_mass}" length="${body_width}" width="${body_width}" height="${body_height}"/>
+</link>
+
+<link name="shoulder_link">
+ <visual>
+  <origin xyz="0 ${-shoulder_offset} ${-shoulder_height/2}" rpy="${PI/2} 0 ${PI/2}"/>
+  <geometry>
+     <mesh filename="package://rviztest/meshes/shoulder_link.stl" scale="${scale} ${scale} ${scale}"/>
+  </geometry>
+  <material name="white">
+   <color rgba="1 1 1 1"/>
+  </material>
+ </visual>
+ <collision>
+  <origin xyz="${shoulder_width/2} ${(shoulder_length/2)-shoulder_offset} 0" rpy="0 0 0"/>
+  <geometry>
+   <box size="${shoulder_width} ${shoulder_length} ${shoulder_height}" />
+  </geometry>
+ </collision>
+ <xacro:inertial_template mass="${shoulder_mass}" length="${shoulder_width}" width="${shoulder_length}" height="${shoulder_height}"/>
+</link>
+
+<link name="upper_arm_link">
+ <visual>
+  <origin xyz="${upper_arm_width/2} ${-(upper_arm_length-upper_arm_short_length)/2} ${-upper_arm_height/2}" rpy="0 0 ${PI/2}"/>
+  <geometry>
+     <mesh filename="package://rviztest/meshes/upper_arm_link.stl" scale="${scale} ${scale} ${scale}"/>
+  </geometry>
+  <material name="white">
+   <color rgba="1 1 1 1"/>
+  </material>
+ </visual>
+ <collision>
+  <origin xyz="0 ${upper_arm_short_length/2} 0" rpy="0 0 0"/>
+  <geometry>
+   <box size="${upper_arm_width} ${upper_arm_length} ${upper_arm_height}" /> 
+  </geometry>
+ </collision>
+ <xacro:inertial_template mass="${upper_arm_mass}" length="${upper_arm_width}" width="${upper_arm_length}" height="${upper_arm_height}"/>
+</link>
+
+<link name="elbow_bracket_link">
+ <visual>
+  <origin xyz="${elbow_bracket_width/2} 0 ${-elbow_bracket_height/2}" rpy="0 0 ${PI/2}"/>
+  <geometry>
+     <mesh filename="package://rviztest/meshes/elbow_bracket_link.stl" scale="${scale} ${scale} ${scale}"/>
+  </geometry>
+  <material name="white">
+   <color rgba="1 1 1 1"/>
+  </material>
+ </visual>
+ <collision>
+  <origin xyz="0 ${elbow_bracket_length/2} 0" rpy="0 0 0"/>
+  <geometry>
+   <box size="${elbow_bracket_width} ${elbow_bracket_length} ${elbow_bracket_height}" /> 
+  </geometry>
+ </collision>
+ <xacro:inertial_template mass="${elbow_bracket_mass}" length="${elbow_bracket_width}" width="${elbow_bracket_length}" height="${elbow_bracket_height}"/>
+</link>
+
+<link name="elbow_block_link">
+ <visual>
+  <origin xyz="${elbow_block_width/2} ${elbow_bracket_short_length} ${-elbow_block_height/2}" rpy="${PI/2} 0 ${-PI/2}"/>
+  <geometry>
+     <mesh filename="package://rviztest/meshes/elbow_block_link.stl" scale="${scale} ${scale} ${scale}"/>
+  </geometry>
+  <material name="white">
+   <color rgba="1 1 1 1"/>
+  </material>
+ </visual>
+ <collision>
+  <origin xyz="0 ${(elbow_block_length/2)-elbow_block_offset} 0" rpy="0 0 0"/>
+  <geometry>
+   <box size="${elbow_block_width} ${elbow_block_length} ${elbow_block_height}" />
+  </geometry>
+ </collision>
+ <xacro:inertial_template mass="${elbow_block_mass}" length="${elbow_block_width}" width="${elbow_block_length}" height="${elbow_block_height}"/>
+</link>
+
+<link name="lower_arm_link">
+ <visual>
+  <origin xyz="${-0.5*lower_arm_width} ${-(lower_arm_length-lower_arm_short_length)} ${-0.7*lower_arm_length}" rpy="${PI/2} 0 ${PI/2}"/>
+  <geometry>
+     <mesh filename="package://rviztest/meshes/lower_arm_link.stl" scale="${scale} ${scale} ${scale}"/>
+  </geometry>
+  <material name="white">
+   <color rgba="1 1 1 1"/>
+  </material>
+ </visual>
+ <collision>
+  <origin xyz="0 ${lower_arm_short_length - (lower_arm_length/2)} 0" rpy="0 0 0"/>
+  <geometry>
+   <box size="${lower_arm_width} ${lower_arm_length} ${lower_arm_height}" />
+  </geometry>
+ </collision>
+ <xacro:inertial_template mass="${lower_arm_mass}" length="${lower_arm_width}" width="${lower_arm_length}" height="${lower_arm_height}"/>
+</link>
+
+<joint name="base_to_body" type="revolute">
+ <limit velocity="1.0" effort="1000.0" lower="${-PI}" upper="${PI}"/>
+ <axis xyz="0 0 1"/>
+ <parent link="base_link" />	
+ <child link="body_link" />
+ <origin xyz="0 0 ${base_height}" rpy="0 0 0"/>
+</joint>
+ 
+<joint name="body_to_shoulder" type="revolute">
+ <limit velocity="1.0" effort="1000.0" lower="${-PI/2}" upper="0"/>
+ <axis xyz="0 0 1"/>
+ <parent link="body_link" />	
+ <child link="shoulder_link" />
+ <origin xyz="${body_width/2} 0 ${body_height - shoulder_height/2}" rpy="0 0 0"/>
+</joint>
+
+<joint name="shoulder_to_upper_arm" type="revolute">
+ <limit velocity="1.0" effort="1000.0" lower="${-PI/4}" upper="${PI/4}"/>
+ <axis xyz="1 0 0"/>
+ <parent link="shoulder_link" />	
+ <child link="upper_arm_link" />
+ <origin xyz="${shoulder_width/2} ${shoulder_short_length} 0" rpy="0 0 0"/> 
+</joint>
+
+<joint name="upper_arm_to_elbow_bracket" type="revolute">
+ <limit velocity="1.0" effort="1000.0" lower="${-PI/4}" upper="${PI/4}"/>
+ <axis xyz="1 0 0"/>
+ <parent link="upper_arm_link" />	
+ <child link="elbow_bracket_link" />
+ <origin xyz="0 ${upper_arm_short_length} 0" rpy="0 0 0"/>
+</joint>
+
+<joint name="elbow_bracket_to_elbow_block" type="revolute">
+ <limit velocity="1.0" effort="1000.0" lower="${-PI/4}" upper="${PI/4}"/>
+ <axis xyz="0 0 1"/>
+ <parent link="elbow_bracket_link" />	
+ <child link="elbow_block_link" />
+ <origin xyz="0 ${elbow_bracket_short_length} 0" rpy="0 0 0"/>
+</joint>
+
+<joint name="elbow_block_to_lower_arm" type="revolute">
+ <limit velocity="1.0" effort="1000.0" lower="${-PI/4}" upper="${PI/4}"/>
+ <axis xyz="1 0 0"/>
+ <parent link="elbow_block_link" />	
+ <child link="lower_arm_link" />
+ <origin xyz="0 ${elbow_block_short_length} 0" rpy="0 0 0"/> 
+</joint>
+
+</robot>
