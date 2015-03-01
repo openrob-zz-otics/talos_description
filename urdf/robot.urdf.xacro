@@ -2,6 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
 
 <xacro:property name="scale" value="0.001" />
+<xacro:property name="inertia_scale" value="0.000000001" />
 <xacro:property name="PI" value="3.14159" />
 
 <xacro:property name="base_width" value="0.62265" />
@@ -38,11 +39,19 @@
 <xacro:property name="elbow_block_height" value="0.19493" />
 <xacro:property name="elbow_block_mass" value="0.22" />
 
-<xacro:property name="lower_arm_length" value="0.41219" />
-<xacro:property name="lower_arm_short_length" value="0.345" /> <!--X Y--> <!-- theirs ours-->
-<xacro:property name="lower_arm_width" value="0.0635" /> <!--Z X-->
+<xacro:property name="lower_arm_length" value="0.37" />
+<xacro:property name="lower_arm_offset" value="0.066" />
+<xacro:property name="lower_arm_wrist_offset" value="0.015" />
+<!--<xacro:property name="lower_arm_short_length" value="0.345" /> --><!--X Y--> <!-- theirs ours-->
+<xacro:property name="lower_arm_width" value="0.03" /> <!--Z X-->
 <xacro:property name="lower_arm_height" value="0.14" /> <!--Y Z-->
 <xacro:property name="lower_arm_mass" value="0.22" />
+
+<xacro:property name="wrist_length" value="0.07238" />
+<xacro:property name="wrist_width" value="0.0635" /> 
+<xacro:property name="wrist_height" value="0.14" /> 
+<xacro:property name="wrist_offset" value="0.0085" /> 
+<xacro:property name="wrist_mass" value="0.22" />
 
 <xacro:macro name="inertial_template" params="mass length width height">
  <inertial>
@@ -93,7 +102,7 @@
  <visual>
   <origin xyz="0 ${-shoulder_offset} ${-shoulder_height/2}" rpy="${PI/2} 0 ${PI/2}"/>
   <geometry>
-     <mesh filename="package://rviztest/meshes/shoulder_link.stl" scale="${scale} ${scale} ${scale}"/>
+     <mesh filename="package://talos_description/meshes/shoulder_link.stl" scale="${scale} ${scale} ${scale}"/>
   </geometry>
   <material name="white">
    <color rgba="1 1 1 1"/>
@@ -112,7 +121,7 @@
  <visual>
   <origin xyz="${upper_arm_width/2} ${-(upper_arm_length-upper_arm_short_length)/2} ${-upper_arm_height/2}" rpy="0 0 ${PI/2}"/>
   <geometry>
-     <mesh filename="package://rviztest/meshes/upper_arm_link.stl" scale="${scale} ${scale} ${scale}"/>
+     <mesh filename="package://talos_description/meshes/upper_arm_link.stl" scale="${scale} ${scale} ${scale}"/>
   </geometry>
   <material name="white">
    <color rgba="1 1 1 1"/>
@@ -131,7 +140,7 @@
  <visual>
   <origin xyz="${elbow_bracket_width/2} 0 ${-elbow_bracket_height/2}" rpy="0 0 ${PI/2}"/>
   <geometry>
-     <mesh filename="package://rviztest/meshes/elbow_bracket_link.stl" scale="${scale} ${scale} ${scale}"/>
+     <mesh filename="package://talos_description/meshes/elbow_bracket_link.stl" scale="${scale} ${scale} ${scale}"/>
   </geometry>
   <material name="white">
    <color rgba="1 1 1 1"/>
@@ -148,9 +157,9 @@
 
 <link name="elbow_block_link">
  <visual>
-  <origin xyz="${elbow_block_width/2} ${elbow_bracket_short_length} ${-elbow_block_height/2}" rpy="${PI/2} 0 ${-PI/2}"/>
+  <origin xyz="-${elbow_block_width/2} ${elbow_block_length-elbow_block_offset} ${elbow_block_height/2}" rpy="${-PI/2} 0 ${-PI/2}"/> <!--${elbow_bracket_short_length} ${-elbow_block_height/2}-->
   <geometry>
-     <mesh filename="package://rviztest/meshes/elbow_block_link.stl" scale="${scale} ${scale} ${scale}"/>
+     <mesh filename="package://talos_description/meshes/elbow_block_link.stl" scale="${scale} ${scale} ${scale}"/>
   </geometry>
   <material name="white">
    <color rgba="1 1 1 1"/>
@@ -167,21 +176,40 @@
 
 <link name="lower_arm_link">
  <visual>
-  <origin xyz="${-0.5*lower_arm_width} ${-(lower_arm_length-lower_arm_short_length)} ${-0.7*lower_arm_length}" rpy="${PI/2} 0 ${PI/2}"/>
+  <origin xyz="-${lower_arm_width/2} ${lower_arm_length-lower_arm_offset} ${lower_arm_height/2}" rpy="${-PI/2} 0 ${-PI/2}"/>
   <geometry>
-     <mesh filename="package://rviztest/meshes/lower_arm_link.stl" scale="${scale} ${scale} ${scale}"/>
+     <mesh filename="package://talos_description/meshes/lower_arm_link.stl" scale="${scale} ${scale} ${scale}"/>
   </geometry>
   <material name="white">
    <color rgba="1 1 1 1"/>
   </material>
  </visual>
  <collision>
-  <origin xyz="0 ${lower_arm_short_length - (lower_arm_length/2)} 0" rpy="0 0 0"/>
+  <origin xyz="0 ${lower_arm_length/2 - lower_arm_offset} 0" rpy="0 0 0"/>
   <geometry>
    <box size="${lower_arm_width} ${lower_arm_length} ${lower_arm_height}" />
   </geometry>
  </collision>
  <xacro:inertial_template mass="${lower_arm_mass}" length="${lower_arm_width}" width="${lower_arm_length}" height="${lower_arm_height}"/>
+</link>
+
+<link name="wrist_link">
+ <visual>
+  <origin xyz="-${wrist_width/2} ${wrist_length-wrist_offset} ${wrist_height/2}" rpy="${-PI/2} 0 ${-PI/2}"/>
+  <geometry>
+     <mesh filename="package://talos_description/meshes/wrist_link.stl" scale="${scale} ${scale} ${scale}"/>
+  </geometry>
+  <material name="white">
+   <color rgba="1 1 1 1"/>
+  </material>
+ </visual>
+ <collision>
+  <origin xyz="0 ${wrist_length/2 - wrist_offset} 0" rpy="0 0 0"/>
+  <geometry>
+   <box size="${wrist_width} ${wrist_length} ${wrist_height}" />
+  </geometry>
+ </collision>
+ <xacro:inertial_template mass="${wrist_mass}" length="${wrist_width}" width="${wrist_length}" height="${wrist_height}"/>
 </link>
 
 <joint name="base_to_body" type="revolute">
@@ -231,5 +259,14 @@
  <child link="lower_arm_link" />
  <origin xyz="0 ${elbow_block_short_length} 0" rpy="0 0 0"/> 
 </joint>
+
+<joint name="lower_arm_to_wrist" type="revolute">
+ <limit velocity="1.0" effort="1000.0" lower="${-PI/4}" upper="${PI/4}"/>
+ <axis xyz="1 0 0"/>
+ <parent link="lower_arm_link" />	
+ <child link="wrist_link" />
+ <origin xyz="0 ${lower_arm_length-lower_arm_offset-lower_arm_wrist_offset} 0" rpy="0 0 0"/> 
+</joint>
+
 
 </robot>
