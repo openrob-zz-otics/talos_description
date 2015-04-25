@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-   <param name="robot_description" command="$(find xacro)/xacro.py '$(find talos_description)/urdf/robot.urdf.xacro'" />
+   <param name="robot_description" command="$(find xacro)/xacro.py '$(find talos_description)/robot/robot.urdf.xacro'" />
 
 </launch>
 
