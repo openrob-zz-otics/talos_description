@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="talos">
+
+	<xacro:include filename="$(find talos_description)/urdf/inertial_template.urdf.xacro" />
+	<xacro:include filename="$(find talos_description)/urdf/materials.urdf.xacro" />
+	<xacro:include filename="$(find talos_description)/urdf/constants.xacro" />
+
+	<!-- these contain macros for their respective robot part -->
+	<xacro:include filename="$(find talos_description)/urdf/base/base.urdf.xacro" />
+	<xacro:include filename="$(find talos_description)/urdf/torso/torso.urdf.xacro" />
+	<xacro:include filename="$(find talos_description)/urdf/arm/arm.urdf.xacro" />
+	<xacro:include filename="$(find talos_description)/urdf/gripper/gripper.urdf.xacro" />
+
+	<xacro:base name="base"/>
+	<xacro:torso name="torso" parent="base">
+		<origin xyz="0 0 ${base_height}" rpy="0 0 0"/>
+	</xacro:torso>
+	<xacro:arm name="arm" parent="torso">
+		<origin xyz="${torso_width/2} 0 ${torso_height - shoulder_height/2}" rpy="0 0 0"/>
+	</xacro:arm>
+	<xacro:gripper name="gripper" parent="arm">
+		<origin xyz="0 ${wrist_length - wrist_offset} 0" rpy="0 0 0"/>
+	</xacro:gripper>
+
+</robot>

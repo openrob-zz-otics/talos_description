@@ -1,2 +1,6 @@
 #temp files
 *~
+
+#generated urdf file
+robot.urdf
+

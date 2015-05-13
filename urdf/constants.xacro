@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="talos">
+	<xacro:property name="scale" value="0.001" />
+	<xacro:property name="inertia_scale" value="0.000000001" />
+	<xacro:property name="PI" value="3.1415926535897931" />
+	
+</robot>

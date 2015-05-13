@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:property name="torso_width" value="0.4324" />
+	<xacro:property name="torso_height" value="1.00318" />
+	<xacro:property name="torso_mass" value="0.22" />
+
+	<xacro:macro name="torso" params="name parent *origin">
+	
+		<link name="${name}_link">
+		 <visual>
+		  <origin xyz="0 0 ${torso_height/2}" rpy="0 0 0"/>
+		  <geometry>
+			 <box size="${torso_width} ${torso_width} ${torso_height}" />
+		  </geometry>
+		  <material name="white"/>
+		 </visual>
+		 <collision>
+		  <origin xyz="0 0 ${torso_height/2}" rpy="0 0 0"/>
+		  <geometry>
+		   <box size="${torso_width} ${torso_width} ${torso_height}" />
+		  </geometry>
+		 </collision>
+		 <xacro:inertial_template mass="${torso_mass}" length="${torso_width}" width="${torso_width}" height="${torso_height}"/>
+		</link>
+
+		<joint name="${parent}_to_${name}" type="revolute">
+		 <limit velocity="1.0" effort="1000.0" lower="${-PI}" upper="${PI}"/>
+		 <axis xyz="0 0 1"/>
+		 <parent link="${parent}_link" />	
+		 <child link="${name}_link" />
+		 <insert_block name="origin"/>
+		 <!--<origin xyz="0 0 ${base_height}" rpy="0 0 0"/>-->
+		</joint>
+		
+	</xacro:macro>
+
+</robot>

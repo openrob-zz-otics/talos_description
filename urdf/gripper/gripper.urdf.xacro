@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+	
+	<xacro:property name="gripper_base_length" value="0.08316" />
+	<xacro:property name="gripper_base_width" value="0.0889" /> 
+	<xacro:property name="gripper_base_height" value="0.0889" /> 
+	<xacro:property name="gripper_base_mass" value="0.22" />
+
+	<xacro:property name="stationary_claw_length" value="0.14529" />
+	<xacro:property name="stationary_claw_width" value="0.04283" /> 
+	<xacro:property name="stationary_claw_height" value="0.0862" /> 
+	<xacro:property name="stationary_claw_mass" value="0.22" />
+
+	<xacro:property name="movable_claw_length" value="0.12861" />
+	<xacro:property name="movable_claw_width" value="0.05207" /> 
+	<xacro:property name="movable_claw_height" value="0.07435" /> 
+	<xacro:property name="movable_claw_mass" value="0.22" />
+
+	<xacro:property name="movable_claw_joint_y_offset" value="0.041" />
+	<xacro:property name="movable_claw_joint_z_offset" value="0.018" />
+
+	<xacro:macro name="gripper" params="name parent *origin">
+	
+		<link name="${name}_base_link">
+		 <visual>
+		  <origin xyz="-${gripper_base_width/2} 0 -${gripper_base_height/2}" rpy="0 0 0"/>
+		  <geometry>
+			 <mesh filename="package://talos_description/meshes/gripper/gripper_base_link.stl" scale="${scale} ${scale} ${scale}"/>
+		  </geometry>
+		  <material name="white"/>
+		 </visual>
+		 <collision>
+		  <origin xyz="0 ${gripper_base_length/2} -${gripper_base_height/2}" rpy="0 0 0"/>
+		  <geometry>
+		   <box size="${gripper_base_width} ${gripper_base_length} ${gripper_base_height}" />
+		  </geometry>
+		 </collision>
+		 <xacro:inertial_template mass="${gripper_base_mass}" length="${gripper_base_width}" width="${gripper_base_length}" height="${gripper_base_height}"/>
+		</link>
+
+		<link name="${name}_stationary_claw_link">
+		 <visual>
+		  <origin xyz="${stationary_claw_width/2} 0 -${1.25*gripper_base_width/2}" rpy="0 -${PI/2} 0"/>
+		  <geometry>
+			 <mesh filename="package://talos_description/meshes/gripper/stationary_claw_link.stl" scale="${scale} ${scale} ${scale}"/>
+		  </geometry>
+		  <material name="white"/>
+		 </visual>
+		 <collision>
+		  <origin xyz="0 ${stationary_claw_length/2} 0" rpy="0 0 0"/>
+		  <geometry>
+		   <box size="${stationary_claw_width} ${stationary_claw_length} ${stationary_claw_height}" /> <!-- will probably need a better collision element-->
+		  </geometry>
+		 </collision>
+		 <xacro:inertial_template mass="${stationary_claw_mass}" length="${stationary_claw_width}" width="${stationary_claw_length}" height="${stationary_claw_height}"/>
+		</link>
+
+		<link name="${name}_movable_claw_link">
+		 <visual>
+		  <origin xyz="${movable_claw_width/2 + 0.002} -0.01 0.025" rpy="0 ${PI} 0"/>
+		  <geometry>
+			 <mesh filename="package://talos_description/meshes/gripper/movable_claw_link.stl" scale="${scale} ${scale} ${scale}"/>
+		  </geometry>
+		  <material name="white"/>
+		 </visual>
+		 <collision>
+		  <origin xyz="0 ${wrist_length/2 - wrist_offset} 0" rpy="0 0 0"/>
+		  <geometry>
+		   <box size="${wrist_width} ${wrist_length} ${wrist_height}" />
+		  </geometry>
+		 </collision>
+		 <xacro:inertial_template mass="${wrist_mass}" length="${wrist_width}" width="${wrist_length}" height="${wrist_height}"/>
+		</link>
+
+		<joint name="${parent}_wrist_to_${name}_base" type="revolute">
+		 <limit velocity="1.0" effort="1000.0" lower="${-PI}" upper="${PI}"/>
+		 <axis xyz="0 1 0"/>
+		 <parent link="${parent}_wrist_link" />	
+		 <child link="${name}_base_link" />
+		 <insert_block name="origin"/>
+		 <!--<origin xyz="0 ${wrist_length - wrist_offset} 0" rpy="0 0 0"/>-->
+		</joint>
+
+		<joint name="${name}_base_to_stationary_claw" type="fixed">
+		 <parent link="${name}_base_link" />	
+		 <child link="${name}_stationary_claw_link" />
+		 <origin xyz="0 ${gripper_base_length} 0" rpy="0 0 0"/> 
+		</joint>
+
+		<joint name="${name}_stationary_claw_to_${name}_movable_claw" type="revolute">
+		 <limit velocity="1.0" effort="1000.0" lower="${-PI/14}" upper="${PI/4}"/>
+		 <axis xyz="1 0 0"/>
+		 <parent link="${name}_stationary_claw_link" />	
+		 <child link="${name}_movable_claw_link" />
+		 <origin xyz="0 ${movable_claw_joint_y_offset} ${movable_claw_joint_z_offset}" rpy="0 0 0"/> 
+		</joint>
+	</xacro:macro>
+
+</robot>
