@@ -28,4 +28,47 @@
           </plugin>
        </gazebo>
 
+       <gazebo reference="gripper_base_link">
+           <selfCollide>true</selfCollide>
+       </gazebo>
+
+      <gazebo reference="gripper_stationary_claw_link">
+           <selfCollide>true</selfCollide>
+      </gazebo>
+
+      <gazebo reference="torso_link">
+           <selfCollide>true</selfCollide>
+      </gazebo>
+
+      <gazebo reference="arm_shoulder_link">
+           <selfCollide>true</selfCollide>
+       </gazebo>
+
+      <gazebo reference="arm_upper_arm_link">
+           <selfCollide>true</selfCollide>
+      </gazebo>
+
+     <gazebo reference="arm_elbow_bracket_link">
+           <selfCollide>true</selfCollide>
+     </gazebo>
+
+    <gazebo reference="arm_elbow_block_link">
+           <selfCollide>true</selfCollide>
+    </gazebo>
+
+    <gazebo reference="arm_lower_arm_link">
+           <selfCollide>true</selfCollide>
+    </gazebo>
+
+    <gazebo reference="arm_wrist_link">
+           <selfCollide>true</selfCollide>
+    </gazebo>
+
+
+
+
+
+
+
+
 </robot>
