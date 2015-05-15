@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 	
+
+        <xacro:include filename="$(find talos_description)/urdf/arm/arm.transmission.xacro"/>
+
 	<xacro:property name="shoulder_length" value="0.2" />
 	<xacro:property name="shoulder_short_length" value="0.095" />
 	<xacro:property name="shoulder_offset" value="0.035" />
@@ -144,7 +147,7 @@
 		 </collision>
 		 <xacro:inertial_template mass="${wrist_mass}" length="${wrist_width}" width="${wrist_length}" height="${wrist_height}"/>
 		</link>
-		 
+
 		<joint name="${parent}_to_${name}_shoulder" type="revolute">
 		 <limit velocity="1.0" effort="1000.0" lower="${-PI/2}" upper="0"/>
 		 <axis xyz="0 0 1"/>
@@ -194,6 +197,7 @@
 		 <origin xyz="0 ${lower_arm_length-lower_arm_offset-lower_arm_wrist_offset} 0" rpy="0 0 0"/> 
 		</joint>
 
+          <xacro:talos_arm_transmission prefix=""/>
 	</xacro:macro>
 
 </robot>
