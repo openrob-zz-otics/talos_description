@@ -5,8 +5,8 @@
 
     <transmission name="${prefix}torso_to_arm_shoulder_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="${prefix}body_to_arm_shoulder"/>
-    <actuator name="${prefix}body_to_shoulder_motor">
+    <joint name="${prefix}torso_to_arm_shoulder"/>
+    <actuator name="${prefix}torso_to_shoulder_motor">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
