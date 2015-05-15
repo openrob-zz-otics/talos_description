@@ -3,7 +3,7 @@
 
 	<xacro:property name="torso_width" value="0.4324" />
 	<xacro:property name="torso_height" value="1.00318" />
-	<xacro:property name="torso_mass" value="0.22" />
+	<xacro:property name="torso_mass" value="5.20" />
 
 	<xacro:macro name="torso" params="name parent *origin">
 	
