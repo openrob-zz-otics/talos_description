@@ -5,6 +5,8 @@
 	<xacro:property name="torso_height" value="1.00318" />
 	<xacro:property name="torso_mass" value="5.20" />
 
+        <xacro:include filename="$(find talos_description)/urdf/torso/torso.transmission.xacro"/>
+
 	<xacro:macro name="torso" params="name parent *origin">
 	
 		<link name="${name}_link">
@@ -33,6 +35,8 @@
 		 <!--<origin xyz="0 0 ${base_height}" rpy="0 0 0"/>-->
 		</joint>
 		
+        <xacro:talos_torso_transmission prefix=""/>
+
 	</xacro:macro>
 
 </robot>
