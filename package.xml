@@ -4,18 +4,13 @@
   <version>1.0.0</version>
   <description>The talos_description package</description>
 
-  <!-- One maintainer tag required, multiple allowed, one person per tag --> 
-  <!-- Example:  -->
-  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
   <maintainer email="noobaca2@gmail.com">Devon Ash</maintainer>
   <maintainer email="johnhe@openrobotics.com">John He</maintainer>
 
   <license>BSD</license>
 
-  <!-- <url type="website">http://wiki.ros.org/rviztest</url> -->
   <url type="website">http://openrobotics.ca</url>
 
-  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
   <author email="johnhe@openrobotics.com">John He</author>
   <author email="noobaca2@gmail.com">Devon Ash</author>
 
