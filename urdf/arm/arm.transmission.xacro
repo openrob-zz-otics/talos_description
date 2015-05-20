@@ -43,7 +43,7 @@
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}arm_elbow_block_to_arm_lower_arm"/>
       <actuator name="${prefix}arm_elbow_block_to_arm_lower_arm_motor">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -52,7 +52,7 @@
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}arm_lower_arm_to_arm_wrist"/>
       <actuator name="${prefix}arm_lower_arm_to_arm_wrist_motor">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
