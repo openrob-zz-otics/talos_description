@@ -28,19 +28,19 @@
 		</link>
 
                 <xacro:wheel prefix="fl" parent="base_link">
-                    <origin xyz="${base_width/3} ${base_width/3} 0" rpy="0 ${PI/2} 0"/>
+                    <origin xyz="${base_width/3} ${base_width/3} 0" rpy="0 ${PI/2} ${PI/2}"/>
                 </xacro:wheel>    
 
                 <xacro:wheel prefix="fr" parent="base_link">
-                    <origin xyz="${-base_width/3} ${base_width/3} 0" rpy="0 ${PI/2} 0"/>
+                    <origin xyz="${-base_width/3} ${base_width/3} 0" rpy="0 ${PI/2} ${PI/2}"/>
                 </xacro:wheel>
 
                 <xacro:wheel prefix="bl" parent="base_link">
-                    <origin xyz="${base_width/3} ${-base_width/3} 0" rpy="0 ${PI/2} 0"/>
+                    <origin xyz="${base_width/3} ${-base_width/3} 0" rpy="0 ${PI/2} ${PI/2}"/>
                 </xacro:wheel>   
 
                 <xacro:wheel prefix="br" parent="base_link">
-                   <origin xyz="${-base_width/3} ${-base_width/3} 0" rpy="0 ${PI/2} 0"/>
+                   <origin xyz="${-base_width/3} ${-base_width/3} 0" rpy="0 ${PI/2} ${PI/2}"/>
                 </xacro:wheel>   
 
 		<xacro:talos_wheel_transmission prefix="bl"/>
