@@ -10,8 +10,27 @@
 	<xacro:include filename="$(find talos_description)/urdf/torso/torso.urdf.xacro" />
 	<xacro:include filename="$(find talos_description)/urdf/arm/arm.urdf.xacro" />
 	<xacro:include filename="$(find talos_description)/urdf/gripper/gripper.urdf.xacro" />
+        <xacro:include filename="$(find talos_description)/urdf/wheel/wheel.urdf.xacro" />
 
 	<xacro:base name="base"/>
+
+        <xacro:wheel prefix="fl" parent="base_link">
+           <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:wheel>    
+
+        <xacro:wheel prefix="fr" parent="base_link">
+           <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:wheel>
+
+        <xacro:wheel prefix="bl" parent="base_link">
+           <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:wheel>   
+
+        <xacro:wheel prefix="br" parent="base_link">
+           <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:wheel>         
+
+
 	<xacro:torso name="torso" parent="base">
 		<origin xyz="0 0 ${base_height}" rpy="0 0 0"/>
 	</xacro:torso>
