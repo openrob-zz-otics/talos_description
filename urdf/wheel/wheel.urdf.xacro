@@ -21,7 +21,6 @@
 			  <cylinder length="${wheel_height}" radius="${wheel_radius}" />
 			</geometry>
 		  </collision>
-		 <!-- <xacro:inertial_template mass="${base_mass}" length="${base_width}" width="${base_width}" height="${base_height}"/> -->
 		</link>
 
                <joint name="${prefix}_wheel_joint" type="continuous">

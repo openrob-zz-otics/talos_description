@@ -27,6 +27,90 @@
       <inertia ixx="0.362648807123" ixy="0.0" ixz="0.0" iyy="0.52984713075" iyz="0.0" izz="0.362648807123"/>
     </inertial>
   </link>
+  <link name="fl_wheel_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.037817" radius="0.062265"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.037817" radius="0.062265"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="fl_wheel_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <child link="fl_wheel_link"/>
+    <parent link="base_link"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+  </joint>
+  <link name="fr_wheel_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.037817" radius="0.062265"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.037817" radius="0.062265"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="fr_wheel_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <child link="fr_wheel_link"/>
+    <parent link="base_link"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+  </joint>
+  <link name="bl_wheel_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.037817" radius="0.062265"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.037817" radius="0.062265"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="bl_wheel_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <child link="bl_wheel_link"/>
+    <parent link="base_link"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+  </joint>
+  <link name="br_wheel_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.037817" radius="0.062265"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.037817" radius="0.062265"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="br_wheel_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <child link="br_wheel_link"/>
+    <parent link="base_link"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+  </joint>
   <link name="torso_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0.50159"/>
@@ -255,7 +339,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="arm_elbow_block_to_arm_lower_arm"/>
     <actuator name="arm_elbow_block_to_arm_lower_arm_motor">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -263,7 +347,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="arm_lower_arm_to_arm_wrist"/>
     <actuator name="arm_lower_arm_to_arm_wrist_motor">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -349,14 +433,6 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="arm_wrist_to_gripper_base"/>
     <actuator name="arm_wrist_to_gripper_base_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-  <transmission name="gripper_base_to_stationary_claw_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="gripper_base_to_stationary_claw"/>
-    <actuator name="gripper_base_to_stationary_claw_motor">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
