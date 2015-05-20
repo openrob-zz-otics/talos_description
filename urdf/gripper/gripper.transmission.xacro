@@ -12,15 +12,6 @@
     </actuator>
   </transmission>
   
-    <transmission name="${prefix}gripper_base_to_stationary_claw_trans">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="${prefix}gripper_base_to_stationary_claw"/>
-      <actuator name="${prefix}gripper_base_to_stationary_claw_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-        <mechanicalReduction>1</mechanicalReduction>
-      </actuator>
-    </transmission>
-  
     <transmission name="${prefix}gripper_stationary_claw_to_gripper_movable_claw_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}gripper_stationary_claw_to_gripper_movable_claw"/>
