@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+        <xacro:include filename="$(find talos_description)/urdf/wheel/wheel.urdf.xacro" />
+ 
 	<xacro:property name="base_width" value="0.62265" />
 	<xacro:property name="base_height" value="0.37817" />
 	<xacro:property name="base_mass" value="8.20" />
@@ -23,6 +25,22 @@
 		  </collision>
 		  <xacro:inertial_template mass="${base_mass}" length="${base_width}" width="${base_width}" height="${base_height}"/>
 		</link>
+
+                <xacro:wheel prefix="fl" parent="base_link">
+                    <origin xyz="${base_width/3} ${base_width/3} 0" rpy="0 ${PI/2} 0"/>
+                </xacro:wheel>    
+
+                <xacro:wheel prefix="fr" parent="base_link">
+                    <origin xyz="${-base_width/3} ${base_width/3} 0" rpy="0 ${PI/2} 0"/>
+                </xacro:wheel>
+
+                <xacro:wheel prefix="bl" parent="base_link">
+                    <origin xyz="${base_width/3} ${-base_width/3} 0" rpy="0 ${PI/2} 0"/>
+                </xacro:wheel>   
+
+                <xacro:wheel prefix="br" parent="base_link">
+                   <origin xyz="${-base_width/3} ${-base_width/3} 0" rpy="0 ${PI/2} 0"/>
+                </xacro:wheel>   
 		
 	</xacro:macro>
 
