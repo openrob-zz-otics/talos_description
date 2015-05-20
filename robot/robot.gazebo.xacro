@@ -65,11 +65,20 @@
            <selfCollide>true</selfCollide>
     </gazebo>
 
+    <gazebo reference="bl_wheel_link">
+           <selfCollide>true</selfCollide>
+    </gazebo>
 
+    <gazebo reference="br_wheel_link">
+           <selfCollide>true</selfCollide>
+    </gazebo>
 
+     <gazebo reference="fl_wheel_link">
+           <selfCollide>true</selfCollide>
+    </gazebo>
 
-
-
-
+     <gazebo reference="fr_wheel_link">
+           <selfCollide>true</selfCollide>
+    </gazebo>
 
 </robot>
