@@ -58,7 +58,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="base_to_torso"/>
     <actuator name="base_to_torso_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -223,7 +223,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="torso_to_arm_shoulder"/>
     <actuator name="torso_to_shoulder_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -231,7 +231,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="arm_shoulder_to_arm_upper_arm"/>
     <actuator name="arm_shoulder_to_arm_upper_arm_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -239,7 +239,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="arm_upper_arm_to_arm_elbow_bracket"/>
     <actuator name="arm_upper_arm_to_arm_elbow_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -247,7 +247,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="arm_elbow_bracket_to_arm_elbow_block"/>
     <actuator name="arm_elbow_bracket_to_arm_elbow_block_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -255,7 +255,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="arm_elbow_block_to_arm_lower_arm"/>
     <actuator name="arm_elbow_block_to_arm_lower_arm_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -263,7 +263,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="arm_lower_arm_to_arm_wrist"/>
     <actuator name="arm_lower_arm_to_arm_wrist_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -345,5 +345,29 @@
     <child link="gripper_movable_claw_link"/>
     <origin rpy="0 0 0" xyz="0 0.041 0.018"/>
   </joint>
+  <transmission name="arm_to_wrist_gripper_base_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="arm_to_wrist_gripper_base"/>
+    <actuator name="arm_to_wrist_gripper_base_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="gripper_base_to_stationary_claw_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="gripper_base_to_stationary_claw"/>
+    <actuator name="gripper_base_to_stationary_claw_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="gripper_stationary_claw_to_gripper_movable_claw_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="gripper_stationary_claw_to_gripper_movable_claw"/>
+    <actuator name="gripper_stationary_claw_to_gripper_movable_claw_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
 </robot>
 
