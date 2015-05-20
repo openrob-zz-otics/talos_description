@@ -7,7 +7,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="${prefix}base_to_torso"/>
     <actuator name="${prefix}base_to_torso_motor">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
     </transmission>   

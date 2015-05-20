@@ -7,7 +7,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="${prefix}arm_to_wrist_gripper_base"/>
     <actuator name="${prefix}arm_to_wrist_gripper_base_motor">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -16,7 +16,7 @@
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}gripper_base_to_stationary_claw"/>
       <actuator name="${prefix}gripper_base_to_stationary_claw_motor">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -25,7 +25,7 @@
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}gripper_stationary_claw_to_gripper_movable_claw"/>
       <actuator name="${prefix}gripper_stationary_claw_to_gripper_movable_claw_motor">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>

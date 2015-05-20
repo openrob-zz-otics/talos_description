@@ -7,7 +7,7 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="${prefix}torso_to_arm_shoulder"/>
     <actuator name="${prefix}torso_to_shoulder_motor">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -16,7 +16,7 @@
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}arm_shoulder_to_arm_upper_arm"/>
       <actuator name="${prefix}arm_shoulder_to_arm_upper_arm_motor">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -25,7 +25,7 @@
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}arm_upper_arm_to_arm_elbow_bracket"/>
       <actuator name="${prefix}arm_upper_arm_to_arm_elbow_motor">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -34,7 +34,7 @@
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}arm_elbow_bracket_to_arm_elbow_block"/>
       <actuator name="${prefix}arm_elbow_bracket_to_arm_elbow_block_motor">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
