@@ -1,0 +1,12 @@
+digraph G {
+"gripper_base_link" -> "gripper_stationary_claw_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 50.206 Hz\nMost recent transform: 39.920 \nBuffer length: 4.860 sec\n"];
+"arm_wrist_link" -> "gripper_base_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 33.678 Hz\nMost recent transform: 39.404 \nBuffer length: 4.840 sec\n"];
+"arm_elbow_block_link" -> "arm_lower_arm_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 33.678 Hz\nMost recent transform: 39.404 \nBuffer length: 4.840 sec\n"];
+"arm_elbow_bracket_link" -> "arm_elbow_block_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 33.678 Hz\nMost recent transform: 39.404 \nBuffer length: 4.840 sec\n"];
+"arm_upper_arm_link" -> "arm_elbow_bracket_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 33.678 Hz\nMost recent transform: 39.404 \nBuffer length: 4.840 sec\n"];
+"arm_lower_arm_link" -> "arm_wrist_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 33.678 Hz\nMost recent transform: 39.404 \nBuffer length: 4.840 sec\n"];
+"arm_shoulder_link" -> "arm_upper_arm_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 33.678 Hz\nMost recent transform: 39.404 \nBuffer length: 4.840 sec\n"];
+"torso_link" -> "arm_shoulder_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 33.678 Hz\nMost recent transform: 39.404 \nBuffer length: 4.840 sec\n"];
+"base_link" -> "torso_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 33.678 Hz\nMost recent transform: 39.404 \nBuffer length: 4.840 sec\n"];
+"gripper_stationary_claw_link" -> "gripper_movable_claw_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 33.678 Hz\nMost recent transform: 39.404 \nBuffer length: 4.840 sec\n"];
+}
