@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="talos">
+
+	<xacro:include filename="$(find talos_description)/urdf/inertial_template.urdf.xacro" />
+	<xacro:include filename="$(find talos_description)/urdf/materials.urdf.xacro" />
+	<xacro:include filename="$(find talos_description)/urdf/constants.xacro" />
+
+	<!-- these contain macros for their respective robot part -->
+	<xacro:include filename="$(find talos_description)/urdf/base/base.urdf.xacro" />
+	<xacro:include filename="$(find talos_description)/urdf/torso/torso.urdf.xacro" />
+	<xacro:include filename="$(find talos_description)/urdf/arm/arm.urdf.xacro" />
+	<xacro:include filename="$(find talos_description)/urdf/gripper/gripper.urdf.xacro" />
+
+	<xacro:base name="base"/>
+	<xacro:torso name="torso" parent="base">
+		<origin xyz="0 0 ${base_height}" rpy="0 0 0"/>
+	</xacro:torso>
+	<xacro:arm name="arm" parent="torso">
+		<origin xyz="${torso_width/2} 0 ${torso_height - shoulder_height/2}" rpy="0 0 0"/>
+	</xacro:arm>
+	<xacro:gripper name="gripper" parent="arm">
+		<origin xyz="0 ${wrist_length - wrist_offset} 0" rpy="0 0 0"/>
+	</xacro:gripper>
+
+       <gazebo>
+          <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+          <robotNamespace>/</robotNamespace>
+          </plugin>
+       </gazebo>
+
+       <gazebo reference="gripper_base_link">
+           <selfCollide>true</selfCollide>
+       </gazebo>
+
+      <gazebo reference="gripper_stationary_claw_link">
+           <selfCollide>true</selfCollide>
+      </gazebo>
+
+      <gazebo reference="torso_link">
+           <selfCollide>true</selfCollide>
+      </gazebo>
+
+      <gazebo reference="arm_shoulder_link">
+           <selfCollide>true</selfCollide>
+       </gazebo>
+
+      <gazebo reference="arm_upper_arm_link">
+           <selfCollide>true</selfCollide>
+      </gazebo>
+
+     <gazebo reference="arm_elbow_bracket_link">
+           <selfCollide>true</selfCollide>
+     </gazebo>
+
+    <gazebo reference="arm_elbow_block_link">
+           <selfCollide>true</selfCollide>
+    </gazebo>
+
+    <gazebo reference="arm_lower_arm_link">
+           <selfCollide>true</selfCollide>
+    </gazebo>
+
+    <gazebo reference="arm_wrist_link">
+           <selfCollide>true</selfCollide>
+    </gazebo>
+
+
+
+
+
+
+
+
+</robot>
