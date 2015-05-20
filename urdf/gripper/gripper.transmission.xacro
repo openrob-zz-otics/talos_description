@@ -3,10 +3,10 @@
 
   <xacro:macro name="talos_gripper_transmission" params="prefix">
 
-    <transmission name="${prefix}arm_to_wrist_gripper_base_trans">
+    <transmission name="${prefix}arm_wrist_to_gripper_base_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="${prefix}arm_to_wrist_gripper_base"/>
-    <actuator name="${prefix}arm_to_wrist_gripper_base_motor">
+    <joint name="${prefix}arm_wrist_to_gripper_base"/>
+    <actuator name="${prefix}arm_wrist_to_gripper_base_motor">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
