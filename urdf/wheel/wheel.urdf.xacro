@@ -13,7 +13,7 @@
 		  <visual>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-			  <cylinder length="${wheel_height*1.5}" radius="${wheel_radius}" />
+			  <mesh filename="package://talos_description/urdf/wheel/wheel.stl" scale="${scale} ${scale} ${scale}" />
 			</geometry>
 			<material name="white"/>
 		  </visual>
