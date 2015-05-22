@@ -5,9 +5,10 @@
 
     <transmission name="${prefix}base_to_torso_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="${prefix}base_to_torso"/>
-    <actuator name="${prefix}base_to_torso_motor">
+    <joint name="${prefix}base_to_torso">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="${prefix}base_to_torso_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
     </transmission>   
