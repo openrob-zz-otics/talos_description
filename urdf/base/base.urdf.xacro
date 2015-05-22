@@ -45,7 +45,8 @@
 
 		<xacro:talos_wheel_transmission prefix="bl"/>
 		<xacro:talos_wheel_transmission prefix="br"/>
-		
+		<xacro:talos_wheel_transmission prefix="fr"/>
+                <xacro:talos_wheel_transmission prefix="fl"/>
 	</xacro:macro>
 
 </robot>
