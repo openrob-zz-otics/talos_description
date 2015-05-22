@@ -13,7 +13,8 @@
 		  <visual>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-			  <mesh filename="package://talos_description/urdf/wheel/wheel.stl" scale="${scale} ${scale} ${scale}" />
+                          <cylinder length="${wheel_height}" radius="${wheel_radius}" />
+			  <!-- <mesh filename="package://talos_description/urdf/wheel/wheel.stl" scale="${scale} ${scale} ${scale}" /> -->
 			</geometry>
 			<material name="white"/>
 		  </visual>
@@ -37,10 +38,10 @@
                </joint>
 
                <gazebo reference="${prefix}_wheel_link">
-		     <mu1 value="1.0"/>
-	              <mu2 value="1.0"/>
-		     <kp value="10000000.0" />
-	             <kd value="1.0" />
+		     <!-- <mu1 value="1.0"/>
+	             <mu2 value="1.0"/>
+		     <kp value="100000.0" />
+	             <kd value="1.0" /> -->
 	             <fdir1 value="1 0 0"/>
 	       </gazebo>
 		
