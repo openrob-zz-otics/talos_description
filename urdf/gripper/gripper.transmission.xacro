@@ -5,18 +5,20 @@
 
     <transmission name="${prefix}arm_wrist_to_gripper_base_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="${prefix}arm_wrist_to_gripper_base"/>
+    <joint name="${prefix}arm_wrist_to_gripper_base">
+       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
     <actuator name="${prefix}arm_wrist_to_gripper_base_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
   
     <transmission name="${prefix}gripper_stationary_claw_to_gripper_movable_claw_trans">
       <type>transmission_interface/SimpleTransmission</type>
-      <joint name="${prefix}gripper_stationary_claw_to_gripper_movable_claw"/>
-      <actuator name="${prefix}gripper_stationary_claw_to_gripper_movable_claw_motor">
+      <joint name="${prefix}gripper_stationary_claw_to_gripper_movable_claw">
         <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}gripper_stationary_claw_to_gripper_movable_claw_motor">
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
