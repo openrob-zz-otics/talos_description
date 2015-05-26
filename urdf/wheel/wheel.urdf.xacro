@@ -19,7 +19,7 @@
 			<material name="white"/>
 		  </visual>
 		  <collision>
-			<origin xyz="0 0 0" rpy="0 0 0"/>
+                        <origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
 			  <cylinder length="${wheel_height}" radius="${wheel_radius}" />
 			</geometry>
@@ -38,11 +38,12 @@
                </joint>
 
                <gazebo reference="${prefix}_wheel_link">
+                     <selfCollide>true</selfCollide>
 		     <!-- <mu1 value="1.0"/>
 	             <mu2 value="1.0"/>
 		     <kp value="100000.0" />
 	             <kd value="1.0" /> -->
-	             <fdir1 value="1 0 0"/>
+	             <!-- <fdir1 value="1 0 0"/> -->
 	       </gazebo>
 		
 	</xacro:macro>
