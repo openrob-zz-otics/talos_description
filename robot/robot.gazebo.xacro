@@ -10,6 +10,7 @@
 	<xacro:include filename="$(find talos_description)/urdf/torso/torso.urdf.xacro" />
 	<xacro:include filename="$(find talos_description)/urdf/arm/arm.urdf.xacro" />
 	<xacro:include filename="$(find talos_description)/urdf/gripper/gripper.urdf.xacro" />
+        <xacro:include filename="$(find talos_description)/urdf/head/head.urdf.xacro" />
 
 	<xacro:base name="base"/>
 
@@ -22,6 +23,9 @@
 	<xacro:gripper name="gripper" parent="arm">
 		<origin xyz="0 ${wrist_length - wrist_offset} 0" rpy="0 0 0"/>
 	</xacro:gripper>
+        <xacro:head prefix="" parent="torso_link">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:head>
 
        <gazebo>
           <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">

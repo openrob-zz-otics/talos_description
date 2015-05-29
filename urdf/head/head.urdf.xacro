@@ -75,6 +75,8 @@
                      <selfCollide>true</selfCollide>
 	       </gazebo>
 		
+         <xacro:include filename="$(find talos_description)/urdf/head/head.transmission.xacro" />
+
 	</xacro:macro>
 
 </robot>
