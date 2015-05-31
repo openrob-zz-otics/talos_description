@@ -14,5 +14,15 @@
 	    </actuator>
 	  </transmission>
 
+           <transmission name="${prefix}_base_link_to_caster_trans">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <joint name="${prefix}_base_link_to_caster">
+               <hardwareInterface>VelocityJointInterface</hardwareInterface>
+            </joint>
+	    <actuator name="${prefix}_base_link_to_caster_motor">
+	      <mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	  </transmission>
+
   </xacro:macro>
 </robot>
