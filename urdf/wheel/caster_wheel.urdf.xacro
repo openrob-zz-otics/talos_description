@@ -47,13 +47,12 @@
 			<material name="white"/>
 		  </visual>
 		  <collision>
-                        <origin xyz="0 0 ${caster_height/2 - caster_vertical_offset}" rpy="0 0 0"/>
+                        <origin xyz="0 ${-caster_horizontal_offset_inc_guess} ${caster_height/2 - caster_vertical_offset - caster_vertical_offset_inc_guess}" rpy="0 0 0"/>
 			<geometry>
 			  <box size="${caster_width} ${caster_length} ${caster_height}" />
 			</geometry>
 		  </collision>
 		</link>
-
 
                <joint name="${prefix}_${parent}_to_caster" type="continuous">
 		   <axis xyz="0 0 1" rpy="0 0 0"/>
