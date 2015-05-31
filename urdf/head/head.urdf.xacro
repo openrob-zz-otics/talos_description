@@ -76,6 +76,7 @@
 	       </gazebo>
 		
          <xacro:include filename="$(find talos_description)/urdf/head/head.transmission.xacro" />
+         <xacro:talos_head_transmission prefix=""/>
 
 	</xacro:macro>
 

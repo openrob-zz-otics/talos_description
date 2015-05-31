@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="talos_gripper_transmission" params="prefix">
+  <xacro:macro name="talos_head_transmission" params="prefix">
 
     <transmission name="${prefix}talos_head_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
