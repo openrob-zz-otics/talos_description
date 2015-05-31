@@ -94,6 +94,26 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        bl_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        br_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fl_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fr_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         gripper_base_link:
           Alpha: 1
           Show Axes: false
@@ -120,6 +140,72 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        arm_elbow_block_link:
+          Value: true
+        arm_elbow_bracket_link:
+          Value: true
+        arm_lower_arm_link:
+          Value: true
+        arm_shoulder_link:
+          Value: true
+        arm_upper_arm_link:
+          Value: true
+        arm_wrist_link:
+          Value: true
+        base_link:
+          Value: true
+        bl_wheel_link:
+          Value: true
+        br_wheel_link:
+          Value: true
+        fl_wheel_link:
+          Value: true
+        fr_wheel_link:
+          Value: true
+        gripper_base_link:
+          Value: true
+        gripper_movable_claw_link:
+          Value: true
+        gripper_stationary_claw_link:
+          Value: true
+        odom:
+          Value: true
+        torso_link:
+          Value: true
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        odom:
+          base_link:
+            bl_wheel_link:
+              {}
+            br_wheel_link:
+              {}
+            fl_wheel_link:
+              {}
+            fr_wheel_link:
+              {}
+            torso_link:
+              arm_shoulder_link:
+                arm_upper_arm_link:
+                  arm_elbow_bracket_link:
+                    arm_elbow_block_link:
+                      arm_lower_arm_link:
+                        arm_wrist_link:
+                          gripper_base_link:
+                            gripper_stationary_claw_link:
+                              gripper_movable_claw_link:
+                                {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -144,7 +230,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 6.11572
+      Distance: 2.84017
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
@@ -156,10 +242,10 @@ Visualization Manager:
         Z: 0.20901
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.330398
+      Pitch: 1.0904
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.7604
+      Yaw: 5.68358
     Saved: ~
 Window Geometry:
   Displays:
@@ -177,5 +263,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1615
-  X: 1424
+  X: 1431
   Y: 24

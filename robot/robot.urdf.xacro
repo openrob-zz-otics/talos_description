@@ -17,7 +17,7 @@
 		<origin xyz="0 0 ${base_height}" rpy="0 0 0"/>
 	</xacro:torso>
 	<xacro:arm name="arm" parent="torso">
-		<origin xyz="${torso_width/2} 0 ${torso_height - shoulder_height/2}" rpy="0 0 0"/>
+		<origin xyz="${torso_width/2+shoulder_jut_offset} -${(torso_width/2)-(shoulder_slot_width/2)} ${torso_height - shoulder_height/2}" rpy="0 0 0"/>
 	</xacro:arm>
 	<xacro:gripper name="gripper" parent="arm">
 		<origin xyz="0 ${wrist_length - wrist_offset} 0" rpy="0 0 0"/>

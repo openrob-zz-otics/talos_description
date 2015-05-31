@@ -7,9 +7,11 @@
 	<xacro:property name="shoulder_length" value="0.2" />
 	<xacro:property name="shoulder_short_length" value="0.095" />
 	<xacro:property name="shoulder_offset" value="0.035" />
+	<xacro:property name="shoulder_jut_offset" value= "0.060175" />
 	<xacro:property name="shoulder_width" value="0.10635" />
 	<xacro:property name="shoulder_height" value="0.22" />
 	<xacro:property name="shoulder_mass" value="0.22" />
+	<xacro:property name="shoulder_slot_width" value="0.129" />
 
 	<xacro:property name="upper_arm_length" value="0.55" />
 	<xacro:property name="upper_arm_short_length" value="0.4" />
@@ -48,7 +50,7 @@
 	
 		<link name="${name}_shoulder_link">
 		 <visual>
-		  <origin xyz="0 ${-shoulder_offset} ${-shoulder_height/2}" rpy="${PI/2} 0 ${PI/2}"/>
+		  <origin xyz="-${shoulder_width/2} ${-shoulder_offset} ${-shoulder_height/2}" rpy="${PI/2} 0 ${PI/2}"/>
 		  <geometry>
 			 <mesh filename="package://talos_description/meshes/arm/shoulder_link.stl" scale="${scale} ${scale} ${scale}"/>
 		  </geometry>
@@ -154,7 +156,7 @@
 		 <parent link="${parent}_link" />	
 		 <child link="${name}_shoulder_link" />
 		 <insert_block name="origin"/>
-		 <!--<origin xyz="${body_width/2} 0 ${body_height - shoulder_height/2}" rpy="0 0 0"/>-->
+		 <!--<origin xyz="${torso_width/2+shoulder_jut_offset} -${(torso_width/2)-(shoulder_slot_width/2)} ${torso_height - shoulder_height/2}" rpy="0 0 0"/>-->
 		</joint>
 
 		<joint name="${name}_shoulder_to_${name}_upper_arm" type="revolute">
@@ -162,7 +164,7 @@
 		 <axis xyz="1 0 0"/>
 		 <parent link="${name}_shoulder_link" />	
 		 <child link="${name}_upper_arm_link" />
-		 <origin xyz="${shoulder_width/2} ${shoulder_short_length} 0" rpy="0 0 0"/> 
+		 <origin xyz="0 ${shoulder_short_length} 0" rpy="0 0 0"/> 
 		</joint>
 
 		<joint name="${name}_upper_arm_to_${name}_elbow_bracket" type="revolute">
