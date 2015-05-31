@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="talos_wheel_transmission" params="prefix">
+
+            <!-- Caster wheel transmissions -->
+	    <transmission name="${prefix}_caster_to_wheel_trans">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <joint name="${prefix}_caster_to_wheel">
+               <hardwareInterface>VelocityJointInterface</hardwareInterface>
+            </joint>
+	    <actuator name="${prefix}_caster_to_wheel_motor">
+	      <mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	  </transmission>
+
+  </xacro:macro>
+</robot>
