@@ -11,6 +11,7 @@
             </joint>
 	    <actuator name="${prefix}_back_wheel_motor">
 	      <mechanicalReduction>1</mechanicalReduction>
+              <hardwareInterface>VelocityJointInterface</hardwareInterface>
 	    </actuator>
 	  </transmission>
 

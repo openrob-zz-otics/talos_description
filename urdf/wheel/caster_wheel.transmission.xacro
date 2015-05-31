@@ -11,6 +11,7 @@
             </joint>
 	    <actuator name="${prefix}_caster_to_wheel_motor">
 	      <mechanicalReduction>1</mechanicalReduction>
+              <hardwareInterface>VelocityJointInterface</hardwareInterface>
 	    </actuator>
 	  </transmission>
 
@@ -21,6 +22,7 @@
             </joint>
 	    <actuator name="${prefix}_base_link_to_caster_motor">
 	      <mechanicalReduction>1</mechanicalReduction>
+              <hardwareInterface>VelocityJointInterface</hardwareInterface>
 	    </actuator>
 	  </transmission>
 
