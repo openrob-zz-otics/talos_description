@@ -155,8 +155,8 @@
 		 <axis xyz="0 0 1"/>
 		 <parent link="${parent}_link" />	
 		 <child link="${name}_shoulder_link" />
-		 <insert_block name="origin"/>
-		 <!--<origin xyz="${torso_width/2+shoulder_jut_offset} -${(torso_width/2)-(shoulder_slot_width/2)} ${torso_height - shoulder_height/2}" rpy="0 0 0"/>-->
+		 <!-- <xacro:insert_block name="origin"/> -->
+		  <origin xyz="${torso_width/2+shoulder_jut_offset} -${(torso_width/2)-(shoulder_slot_width/2)} ${torso_height - shoulder_height}" rpy="0 0 0"/>
 		</joint>
 
 		<joint name="${name}_shoulder_to_${name}_upper_arm" type="revolute">
