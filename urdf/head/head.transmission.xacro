@@ -10,6 +10,7 @@
     </joint>
     <actuator name="${prefix}talos_head_joint_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   
@@ -20,6 +21,7 @@
       </joint>
       <actuator name="${prefix}talos_neck_joint_motor">
         <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
       </actuator>
     </transmission>
 

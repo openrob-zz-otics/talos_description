@@ -10,6 +10,7 @@
     </joint>
     <actuator name="${prefix}base_to_torso_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
     </transmission>   
 

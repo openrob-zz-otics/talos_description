@@ -10,6 +10,7 @@
     </joint>
     <actuator name="${prefix}arm_wrist_to_gripper_base_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   
@@ -20,6 +21,7 @@
       </joint>
       <actuator name="${prefix}gripper_stationary_claw_to_gripper_movable_claw_motor">
         <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
       </actuator>
     </transmission>
 
