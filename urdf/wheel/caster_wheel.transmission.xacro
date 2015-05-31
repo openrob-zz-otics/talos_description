@@ -7,22 +7,22 @@
 	    <transmission name="${prefix}_caster_to_wheel_trans">
 	    <type>transmission_interface/SimpleTransmission</type>
 	    <joint name="${prefix}_caster_to_wheel">
-               <hardwareInterface>VelocityJointInterface</hardwareInterface>
+               <hardwareInterface>JointStateInterface</hardwareInterface>
             </joint>
 	    <actuator name="${prefix}_caster_to_wheel_motor">
 	      <mechanicalReduction>1</mechanicalReduction>
-              <hardwareInterface>VelocityJointInterface</hardwareInterface>
+              <hardwareInterface>JointStateInterface</hardwareInterface>
 	    </actuator>
 	  </transmission>
 
            <transmission name="${prefix}_base_link_to_caster_trans">
 	    <type>transmission_interface/SimpleTransmission</type>
 	    <joint name="${prefix}_base_link_to_caster">
-               <hardwareInterface>VelocityJointInterface</hardwareInterface>
+               <hardwareInterface>JointStateInterface</hardwareInterface>
             </joint>
 	    <actuator name="${prefix}_base_link_to_caster_motor">
 	      <mechanicalReduction>1</mechanicalReduction>
-              <hardwareInterface>VelocityJointInterface</hardwareInterface>
+              <hardwareInterface>JointStateInterface</hardwareInterface>
 	    </actuator>
 	  </transmission>
 
