@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<!--need to update caster and caster wheel masses-->
+	<xacro:property name="caster_wheel_radius" value="0.0415" />
+	<xacro:property name="caster_wheel_width" value="0.02675" />
+	<xacro:property name="caster_wheel_mass" value="1.20" />
+	<xacro:property name="caster_width" value="0.06274" />
+	<xacro:property name="caster_length" value="0.07339" />
+	<xacro:property name="caster_height" value="0.12223" />
+	<xacro:property name="caster_mass" value="1.20" />
+
+	<xacro:property name="caster_vertical_offset" value="0.071437" />
+	<xacro:property name="caster_vertical_offset_inc_guess" value="0.009" />
+	<xacro:property name="caster_horizontal_offset" value="0.0293624" />
+	<xacro:property name="caster_horizontal_offset_inc_guess" value="0.0087" />
+	
+	<xacro:macro name="caster_wheel" params="prefix *origin parent">
+	
+		<link name="${prefix}_caster_wheel_link">
+                  <mass value="${caster_wheel_mass}"/>
+                   <xacro:inertial_template mass="${caster_wheel_mass}" length="${caster_wheel_width}" width="${caster_wheel_radius}" height="${caster_wheel_width}"/>
+		  <visual>
+			<origin xyz="0 0 0" rpy="0 ${-PI/2} 0"/>
+			<geometry>
+			  <cylinder length="${caster_wheel_width}" radius="${caster_wheel_radius}" />
+			  <!--<mesh filename="package://talos_description/meshes/wheel/caster_wheel.stl" scale="${scale} ${scale} ${scale}" />-->
+			</geometry>
+			<material name="white"/>
+		  </visual>
+		  <collision>
+                        <origin xyz="0 0 0" rpy="0 ${-PI/2} 0"/>
+			<geometry>
+			  <cylinder length="${caster_wheel_width}" radius="${caster_wheel_radius}" />
+			</geometry>
+		  </collision>
+		</link>
+
+		<link name="${prefix}_caster_link">
+ 		  <mass value="${caster_wheel_mass}"/>
+                   <xacro:inertial_template mass="${caster_mass}" length="${caster_length}" width="${caster_width}" height="${caster_height}"/>
+		  <visual>
+			<origin xyz="${-caster_width/2} ${-caster_horizontal_offset+caster_horizontal_offset_inc_guess} ${-caster_vertical_offset-caster_vertical_offset_inc_guess} " rpy="0 0 ${-PI/2}"/>
+			<geometry>
+                          <mesh filename="package://talos_description/meshes/wheel/caster.stl" scale="${scale} ${scale} ${scale}" />
+			</geometry>
+			<material name="white"/>
+		  </visual>
+		  <collision>
+                        <origin xyz="0 0 ${caster_height/2 - caster_vertical_offset}" rpy="0 0 0"/>
+			<geometry>
+			  <box size="${caster_width} ${caster_length} ${caster_height}" />
+			</geometry>
+		  </collision>
+		</link>
+
+
+               <joint name="${prefix}_${parent}_to_caster" type="continuous">
+		   <axis xyz="0 0 1" rpy="0 0 0"/>
+                   <xacro:insert_block name="origin"/>
+                   <child link="${prefix}_caster_link"/>
+                   <parent link="${parent}"/>
+               </joint>
+
+		<joint name="${prefix}_caster_to_wheel" type="continuous">
+		  <origin xyz="0 ${-caster_horizontal_offset} -${caster_vertical_offset}" rpy="0 0 0"/>
+		  <axis xyz="1 0 0" rpy="0 0 0"/>
+		  <limit effort="100" velocity="100" />
+		  <joint_properties damping="0.0" friction="0.0" />
+		  <child link="${prefix}_caster_wheel_link"/>
+                  <parent link="${prefix}_caster_link"/>
+		</joint>
+
+               <!--<gazebo reference="${prefix}_caster_wheel_link">
+                     <selfCollide>true</selfCollide>
+		     <mu1 value="1.0"/>
+	             <mu2 value="1.0"/>
+		     <kp value="100000.0" />
+	             <kd value="1.0" />
+	             <fdir1 value="1 0 0"/>
+	       </gazebo>-->
+		
+	</xacro:macro>
+
+</robot>

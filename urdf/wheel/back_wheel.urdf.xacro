@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:property name="back_wheel_radius" value="0.0762" />
+	<xacro:property name="back_wheel_height" value="0.0381" />
+	<xacro:property name="back_wheel_mass" value="1.20" />
+	
+	<xacro:macro name="back_wheel" params="prefix *origin parent">
+	
+		<link name="${prefix}_back_wheel_link">
+                  <mass value="${back_wheel_mass}"/>
+                   <xacro:inertial_template mass="${back_wheel_mass}" length="${back_wheel_height}" width="${back_wheel_radius}" height="${back_wheel_height}"/>
+		  <visual>
+			<origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
+			<geometry>
+                          <cylinder length="${back_wheel_height}" radius="${back_wheel_radius}" />
+			  <!-- <mesh filename="package://talos_description/meshes/wheel/back_wheel.stl" scale="${scale} ${scale} ${scale}" /> -->
+			</geometry>
+			<material name="white"/>
+		  </visual>
+		  <collision>
+                        <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
+			<geometry>
+			  <cylinder length="${back_wheel_height}" radius="${back_wheel_radius}" />
+			</geometry>
+		  </collision>
+		</link>
+
+               <joint name="${prefix}_back_wheel_joint" type="continuous">
+                   <xacro:insert_block name="origin"/>
+                   <child link="${prefix}_back_wheel_link"/>
+                   <parent link="${parent}"/>
+                   <axis xyz="1 0 0" rpy="0 0 0"/>
+                   <limit effort="100"
+                          velocity="100" />
+                   <joint_properties damping="0.0"
+                                     friction="0.0" />
+               </joint>
+
+               <gazebo reference="${prefix}_back_wheel_link">
+                     <selfCollide>true</selfCollide>
+		     <!-- <mu1 value="1.0"/>
+	             <mu2 value="1.0"/>
+		     <kp value="100000.0" />
+	             <kd value="1.0" /> -->
+	             <!-- <fdir1 value="1 0 0"/> -->
+	       </gazebo>
+		
+	</xacro:macro>
+
+</robot>
