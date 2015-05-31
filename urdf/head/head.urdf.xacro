@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<xacro:property name="head_mass" value="1.20" />
+	<xacro:property name="head_mass" value="0.20" />
+         <xacro:include filename="$(find talos_description)/urdf/head/head.transmission.xacro" />
 	
 	<xacro:macro name="head" params="prefix parent *origin">
 	
@@ -75,7 +76,7 @@
                      <selfCollide>true</selfCollide>
 	       </gazebo>
 		
-         <xacro:include filename="$(find talos_description)/urdf/head/head.transmission.xacro" />
+         <xacro:talos_head_transmission prefix=""/>
 
 	</xacro:macro>
 

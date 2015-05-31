@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="back_wheel_transmission" params="prefix">
+
+            <!-- back wheel transmissions -->
+	    <transmission name="${prefix}_back_wheel_trans">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <joint name="${prefix}_back_wheel_joint">
+               <hardwareInterface>VelocityJointInterface</hardwareInterface>
+            </joint>
+	    <actuator name="${prefix}_back_wheel_motor">
+	      <mechanicalReduction>1</mechanicalReduction>
+              <hardwareInterface>VelocityJointInterface</hardwareInterface>
+	    </actuator>
+	  </transmission>
+
+  </xacro:macro>
+</robot>

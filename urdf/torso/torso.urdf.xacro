@@ -4,7 +4,7 @@
 	<xacro:property name="torso_width" value="0.4324" />
 	<xacro:property name="torso_height" value="1.03818" />
 	<xacro:property name="torso_mass" value="5.20" />
-	<xacro:property name="torso_offset" value="0.23965" />
+	<xacro:property name="torso_offset" value="0.33965" />
 
         <xacro:include filename="$(find talos_description)/urdf/torso/torso.transmission.xacro"/>
 
@@ -14,7 +14,6 @@
 		 <visual>
 		  <origin xyz="-${torso_width/2} ${torso_width/2} -${torso_offset}" rpy="0 0 -${PI/2}"/>
 		  <geometry>
-			 <!--<box size="${torso_width} ${torso_width} ${torso_height}" />-->
 <mesh filename="package://talos_description/meshes/torso/torso_link.stl" scale="${scale} ${scale} ${scale}"/>
 		  </geometry>
 		  <material name="white"/>
@@ -33,7 +32,7 @@
 		 <axis xyz="0 0 1"/>
 		 <parent link="${parent}_link" />	
 		 <child link="${name}_link" />
-		 <insert_block name="origin"/>
+		 <xacro:insert_block name="origin"/>
 		 <!--<origin xyz="0 0 ${base_height}" rpy="0 0 0"/>-->
 		</joint>
 		

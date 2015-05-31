@@ -1,25 +1,27 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="talos_gripper_transmission" params="prefix">
+  <xacro:macro name="talos_head_transmission" params="prefix">
 
     <transmission name="${prefix}talos_head_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="${prefix}talos_head_joint">
-       <hardwareInterface>EffortJointInterface</hardwareInterface>
+       <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="${prefix}talos_head_joint_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   
     <transmission name="${prefix}talos_neck_joint_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}talos_neck_joint">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
       </joint>
       <actuator name="${prefix}talos_neck_joint_motor">
         <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
       </actuator>
     </transmission>
 

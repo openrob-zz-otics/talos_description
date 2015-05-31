@@ -10,6 +10,7 @@
     </joint>
     <actuator name="${prefix}torso_to_shoulder_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   
@@ -20,6 +21,7 @@
       </joint>
       <actuator name="${prefix}arm_shoulder_to_arm_upper_arm_motor">
         <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
       </actuator>
     </transmission>
   
@@ -30,6 +32,7 @@
       </joint>
       <actuator name="${prefix}arm_upper_arm_to_arm_elbow_motor">
         <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
       </actuator>
     </transmission>
   
@@ -40,6 +43,7 @@
       </joint>
       <actuator name="${prefix}arm_elbow_bracket_to_arm_elbow_block_motor">
         <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
       </actuator>
     </transmission>
   
@@ -50,6 +54,7 @@
       </joint>
       <actuator name="${prefix}arm_elbow_block_to_arm_lower_arm_motor">
         <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
       </actuator>
     </transmission>
 
@@ -60,6 +65,7 @@
       </joint>
       <actuator name="${prefix}arm_lower_arm_to_arm_wrist_motor">
         <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
       </actuator>
     </transmission>
 
