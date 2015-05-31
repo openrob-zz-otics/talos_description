@@ -6,15 +6,16 @@
 
 	<xacro:property name="base_width" value="0.62265" />
 	<xacro:property name="base_height" value="0.37817" />
+	<xacro:property name="base_skirt_height_guestimate" value="0.073" />
 	<xacro:property name="base_mass" value="8.20" />
 	
 	<xacro:macro name="base" params="name">
 	
 		<link name="${name}_link">
 		  <visual>
-			<origin xyz="0 0 ${base_height/2}" rpy="0 0 0"/>
+			<origin xyz="${base_width/2} ${base_width/2} 0" rpy="0 0 ${PI}"/>
 			<geometry>
-			  <box size="${base_width} ${base_width} ${base_height}" />
+			  <mesh filename="package://talos_description/meshes/base/base_link.stl" scale="${scale} ${scale} ${scale}"/>
 			</geometry>
 			<material name="white"/>
 		  </visual>

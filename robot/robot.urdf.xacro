@@ -14,7 +14,7 @@
 	<xacro:base name="base"/>
 
 	<xacro:torso name="torso" parent="base">
-		<origin xyz="0 0 ${base_height}" rpy="0 0 0"/>
+		<origin xyz="0 0 ${base_height-base_skirt_height_guestimate}" rpy="0 0 0"/>
 	</xacro:torso>
 	<xacro:arm name="arm" parent="torso">
 		<origin xyz="${torso_width/2+shoulder_jut_offset} -${(torso_width/2)-(shoulder_slot_width/2)} ${torso_height - shoulder_height/2}" rpy="0 0 0"/>
