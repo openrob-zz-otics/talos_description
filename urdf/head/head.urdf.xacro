@@ -2,6 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 	<xacro:property name="head_mass" value="0.20" />
+        <xacro:property name="head_offset" value="0.085" />
          <xacro:include filename="$(find talos_description)/urdf/head/head.transmission.xacro" />
 	
 	<xacro:macro name="head" params="prefix parent *origin">
