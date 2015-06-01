@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<xacro:property name="head_mass" value="1.20" />
+	<xacro:property name="head_mass" value="0.20" />
         <xacro:property name="neck_offset" value="0.085" />
         <xacro:property name="head_offset" value="0.075" />
         <xacro:property name="neck_alignment" value="${PI/12}" />
@@ -13,7 +13,7 @@
                 <!-- head which attackes to the pan unit, this is the tilt unit -->
 		<link name="${prefix}talos_head_link">
                   <mass value="${head_mass}"/>
-                   <xacro:inertial_template mass="${head_mass/12}" length="${head_mass/12}" width="${head_mass/12}" height="${head_mass/12}"/>
+                   <xacro:inertial_template mass="${head_mass}" length="${head_mass/12}" width="${head_mass/12}" height="${head_mass/12}"/>
 		  <visual>
 			<origin xyz="0 ${head_offset} 0" rpy="0 0 0"/>
 			<geometry>
@@ -32,7 +32,7 @@
               <!-- Neck which attaches to the torso and is the pan unit -->
               <link name="${prefix}talos_neck_link">
                   <mass value="${head_mass}"/>
-                   <xacro:inertial_template mass="${head_mass/12}" length="${head_mass/12}" width="${head_mass/12}" height="${head_mass/12}"/>
+                   <xacro:inertial_template mass="${head_mass}" length="${head_mass/12}" width="${head_mass/12}" height="${head_mass/12}"/>
 		  <visual>
 			<origin xyz="0 0 0" rpy="0 -${neck_alignment} 0"/>
 			<geometry>
@@ -49,27 +49,27 @@
 		</link>
 
                <!-- Join head to neck (Tilt unit) -->
-               <joint name="${prefix}talos_head_joint" type="revolute">
+               <joint name="${prefix}talos_head_joint" type="fixed">
                    <origin xyz="0 0 0" rpy="0 0 0"/>
                    <child link="${prefix}talos_head_link"/>
                    <parent link="${prefix}talos_neck_link"/>
                    <axis xyz="0 1 0" rpy="0 0 0"/>
-                   <limit effort="100"
+                   <!-- <limit effort="100"
                           velocity="100" />
                    <joint_properties damping="0.0"
-                                     friction="0.0" />
+                                     friction="0.0" /> -->
                </joint>
 
                <!-- Join neck to torso (Pan unit) -->
-               <joint name="${prefix}talos_neck_joint" type="continuous">
+               <joint name="${prefix}talos_neck_joint" type="fixed">
                    <xacro:insert_block name="origin"/>
                    <child link="${prefix}talos_neck_link"/>
                    <parent link="${parent}"/>
                    <axis xyz="0 1 0" rpy="0 0 0"/>
-                   <limit effort="100"
+                   <!-- <limit effort="100"
                           velocity="100" />
                    <joint_properties damping="0.0"
-                                     friction="0.0" />
+                                     friction="0.0" /> -->
                </joint>
 
                <gazebo reference="${prefix}talos_head_link">
