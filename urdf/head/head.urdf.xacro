@@ -80,7 +80,7 @@
                      <selfCollide>true</selfCollide>
 	       </gazebo>
 		
-         <xacro:talos_head_transmission prefix=""/>
+         <!-- <xacro:talos_head_transmission prefix=""/> -->
 
 	</xacro:macro>
 
