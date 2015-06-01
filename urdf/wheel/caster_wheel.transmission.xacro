@@ -15,7 +15,7 @@
 	    </actuator>
 	  </transmission>
 
-           <transmission name="${prefix}_base_link_to_caster_trans">
+          <!-- <transmission name="${prefix}_base_link_to_caster_trans">
 	    <type>transmission_interface/SimpleTransmission</type>
 	    <joint name="${prefix}_base_link_to_caster">
                <hardwareInterface>JointStateInterface</hardwareInterface>
@@ -24,7 +24,7 @@
 	      <mechanicalReduction>1</mechanicalReduction>
               <hardwareInterface>JointStateInterface</hardwareInterface>
 	    </actuator>
-	  </transmission>
+	  </transmission> -->
 
   </xacro:macro>
 </robot>
