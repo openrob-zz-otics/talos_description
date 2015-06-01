@@ -39,10 +39,10 @@
 
                <gazebo reference="${prefix}_back_wheel_link">
                      <selfCollide>true</selfCollide>
-		  <!--   <mu1 value="1.0"/>
-	             <mu2 value="1.0"/>
-		     <kp value="100000.0" />
-	             <kd value="1.0" /> -->
+		     <mu1 value="50.0"/>
+	             <mu2 value="50.0"/> 
+		    <!-- <kp value="100000.0" />
+	             <kd value="1.0" />-->
 	             <!-- <fdir1 value="1 0 0"/> -->
 	       </gazebo>
 		
