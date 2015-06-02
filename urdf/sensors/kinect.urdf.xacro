@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find talos_description)/urdf/sensors/kinect.gazebo.xacro" />
+
+  <xacro:macro name="kinect" params="*origin parent">
+
+    <!-- still need kinect models and links -->
+    <link name="camera_link">
+        <inertial>
+           <mass value="0.1" />
+           <xacro:insert_block name="origin"/>
+           <inertia ixx="0.01"  ixy="0.0"  ixz="0.0"
+                 iyy="0.01"  iyz="0.0"
+                 izz="0.01" />
+        </inertial>
+
+        <visual>
+            <xacro:insert_block name="origin"/>
+            <geometry>
+               <mesh filename="package://talos_description/urdf/sensors/kinect.dae" scale="0.001 0.001 0.001" />
+             </geometry>
+        </visual>
+
+        <collision>
+           <xacro:insert_block name="origin"/>
+           <geometry>
+              <mesh filename="package://talos_description/urdf/sensors/kinect.dae" scale="0.001 0.001 0.001" />
+           </geometry>
+        </collision>
+    </link>
+
+    <joint name="kinect_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="${PI} 0 ${PI}"/>
+        <parent link="${parent}"/>
+        <child link="camera_link"/>
+    </joint>
+
+    <xacro:kinect_camera_gazebo prefix="camera"/>
+  </xacro:macro>
+
+</robot>
+
