@@ -10,14 +10,14 @@
   <!-- these contain macros for their respective robot part -->
   <link name="base_link">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0.189085"/>
+      <origin rpy="0 0 3.14159265359" xyz="0.311325 0.311325 0"/>
       <geometry>
-        <box size="0.62265 0.62265 0.37817"/>
+        <mesh filename="package://talos_description/meshes/base/base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="white"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0.189085"/>
+      <origin rpy="0 0 0" xyz="0 0 0.116085"/>
       <geometry>
         <box size="0.62265 0.62265 0.37817"/>
       </geometry>
@@ -27,107 +27,257 @@
       <inertia ixx="0.362648807123" ixy="0.0" ixz="0.0" iyy="0.52984713075" iyz="0.0" izz="0.362648807123"/>
     </inertial>
   </link>
-  <link name="fl_wheel_link">
+  <link name="fl_caster_wheel_link">
+    <mass value="1.2"/>
+    <inertial>
+      <mass value="1.2"/>
+      <inertia ixx="0.0001431125" ixy="0.0" ixz="0.0" iyy="0.00024378125" iyz="0.0" izz="0.00024378125"/>
+    </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 -1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.037817" radius="0.062265"/>
+        <cylinder length="0.02675" radius="0.0415"/>
+        <!--<mesh filename="package://talos_description/meshes/wheel/caster_wheel.stl" scale="${scale} ${scale} ${scale}" />-->
       </geometry>
       <material name="white"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 -1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.037817" radius="0.062265"/>
+        <cylinder length="0.02675" radius="0.0415"/>
       </geometry>
     </collision>
   </link>
-  <joint name="fl_wheel_joint" type="continuous">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <child link="fl_wheel_link"/>
-    <parent link="base_link"/>
-    <axis rpy="0 0 0" xyz="0 1 0"/>
-  </joint>
-  <link name="fr_wheel_link">
+  <link name="fl_caster_link">
+    <mass value="1.2"/>
+    <inertial>
+      <mass value="1.2"/>
+      <inertia ixx="0.0020326265" ixy="0.0" ixz="0.0" iyy="0.00093223997" iyz="0.0" izz="0.00188764805"/>
+    </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 -1.57079632679" xyz="-0.03137 -0.0206624 -0.080437 "/>
       <geometry>
-        <cylinder length="0.037817" radius="0.062265"/>
+        <mesh filename="package://talos_description/meshes/wheel/caster.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="white"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.0087 -0.019322"/>
       <geometry>
-        <cylinder length="0.037817" radius="0.062265"/>
+        <box size="0.06274 0.07339 0.12223"/>
       </geometry>
     </collision>
   </link>
-  <joint name="fr_wheel_joint" type="continuous">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <child link="fr_wheel_link"/>
+  <joint name="fl_base_link_to_caster" type="continuous">
+    <axis rpy="0 0 0" xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0.2175 0.21745 0"/>
+    <child link="fl_caster_link"/>
     <parent link="base_link"/>
-    <axis rpy="0 0 0" xyz="0 1 0"/>
   </joint>
-  <link name="bl_wheel_link">
+  <joint name="fl_caster_to_wheel" type="continuous">
+    <origin rpy="0 0 0" xyz="0 -0.0293624 -0.071437"/>
+    <axis rpy="0 0 0" xyz="1 0 0"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+    <child link="fl_caster_wheel_link"/>
+    <parent link="fl_caster_link"/>
+  </joint>
+  <gazebo reference="fl_caster_wheel_link">
+    <!-- <selfCollide>true</selfCollide> -->
+    <mu1 value="0.0"/>
+    <mu2 value="0.0"/>
+    <!-- <kp value="100000.0" />
+	             <kd value="1.0" /> -->
+  </gazebo>
+  <gazebo reference="fl_caster_link">
+    <!-- <selfCollide>true</selfCollide> -->
+    <mu1 value="0.0"/>
+    <mu2 value="0.0"/>
+    <!-- <kp value="100000.0" />
+	             <kd value="1.0" /> -->
+  </gazebo>
+  <link name="fr_caster_wheel_link">
+    <mass value="1.2"/>
+    <inertial>
+      <mass value="1.2"/>
+      <inertia ixx="0.0001431125" ixy="0.0" ixz="0.0" iyy="0.00024378125" iyz="0.0" izz="0.00024378125"/>
+    </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 -1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.037817" radius="0.062265"/>
+        <cylinder length="0.02675" radius="0.0415"/>
+        <!--<mesh filename="package://talos_description/meshes/wheel/caster_wheel.stl" scale="${scale} ${scale} ${scale}" />-->
       </geometry>
       <material name="white"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 -1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.037817" radius="0.062265"/>
+        <cylinder length="0.02675" radius="0.0415"/>
       </geometry>
     </collision>
   </link>
-  <joint name="bl_wheel_joint" type="continuous">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <child link="bl_wheel_link"/>
-    <parent link="base_link"/>
-    <axis rpy="0 0 0" xyz="0 1 0"/>
-  </joint>
-  <link name="br_wheel_link">
+  <link name="fr_caster_link">
+    <mass value="1.2"/>
+    <inertial>
+      <mass value="1.2"/>
+      <inertia ixx="0.0020326265" ixy="0.0" ixz="0.0" iyy="0.00093223997" iyz="0.0" izz="0.00188764805"/>
+    </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 -1.57079632679" xyz="-0.03137 -0.0206624 -0.080437 "/>
       <geometry>
-        <cylinder length="0.037817" radius="0.062265"/>
+        <mesh filename="package://talos_description/meshes/wheel/caster.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="white"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.0087 -0.019322"/>
       <geometry>
-        <cylinder length="0.037817" radius="0.062265"/>
+        <box size="0.06274 0.07339 0.12223"/>
       </geometry>
     </collision>
   </link>
-  <joint name="br_wheel_joint" type="continuous">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <child link="br_wheel_link"/>
+  <joint name="fr_base_link_to_caster" type="continuous">
+    <axis rpy="0 0 0" xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="-0.2175 0.21745 0"/>
+    <child link="fr_caster_link"/>
     <parent link="base_link"/>
-    <axis rpy="0 0 0" xyz="0 1 0"/>
   </joint>
+  <joint name="fr_caster_to_wheel" type="continuous">
+    <origin rpy="0 0 0" xyz="0 -0.0293624 -0.071437"/>
+    <axis rpy="0 0 0" xyz="1 0 0"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+    <child link="fr_caster_wheel_link"/>
+    <parent link="fr_caster_link"/>
+  </joint>
+  <gazebo reference="fr_caster_wheel_link">
+    <!-- <selfCollide>true</selfCollide> -->
+    <mu1 value="0.0"/>
+    <mu2 value="0.0"/>
+    <!-- <kp value="100000.0" />
+	             <kd value="1.0" /> -->
+  </gazebo>
+  <gazebo reference="fr_caster_link">
+    <!-- <selfCollide>true</selfCollide> -->
+    <mu1 value="0.0"/>
+    <mu2 value="0.0"/>
+    <!-- <kp value="100000.0" />
+	             <kd value="1.0" /> -->
+  </gazebo>
+  <link name="bl_back_wheel_link">
+    <mass value="1.2"/>
+    <inertial>
+      <mass value="1.2"/>
+      <inertia ixx="0.000290322" ixy="0.0" ixz="0.0" iyy="0.0006752178025" iyz="0.0" izz="0.0006752178025"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0381" radius="0.072805"/>
+        <!-- <mesh filename="package://talos_description/meshes/wheel/back_wheel.stl" scale="${scale} ${scale} ${scale}" /> -->
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0381" radius="0.072805"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="bl_back_wheel_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0.229125 -0.2 -0.040132"/>
+    <child link="bl_back_wheel_link"/>
+    <parent link="base_link"/>
+    <axis rpy="0 0 0" xyz="1 0 0"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+  <gazebo reference="bl_back_wheel_link">
+    <selfCollide>true</selfCollide>
+    <mu1 value="50.0"/>
+    <mu2 value="50.0"/>
+    <!-- <kp value="100000.0" />
+	             <kd value="1.0" />-->
+    <!-- <fdir1 value="1 0 0"/> -->
+  </gazebo>
+  <link name="br_back_wheel_link">
+    <mass value="1.2"/>
+    <inertial>
+      <mass value="1.2"/>
+      <inertia ixx="0.000290322" ixy="0.0" ixz="0.0" iyy="0.0006752178025" iyz="0.0" izz="0.0006752178025"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0381" radius="0.072805"/>
+        <!-- <mesh filename="package://talos_description/meshes/wheel/back_wheel.stl" scale="${scale} ${scale} ${scale}" /> -->
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0381" radius="0.072805"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="br_back_wheel_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.229125 -0.2 -0.040132"/>
+    <child link="br_back_wheel_link"/>
+    <parent link="base_link"/>
+    <axis rpy="0 0 0" xyz="1 0 0"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+  <gazebo reference="br_back_wheel_link">
+    <selfCollide>true</selfCollide>
+    <mu1 value="50.0"/>
+    <mu2 value="50.0"/>
+    <!-- <kp value="100000.0" />
+	             <kd value="1.0" />-->
+    <!-- <fdir1 value="1 0 0"/> -->
+  </gazebo>
+  <xacro:caster_wheel_transmission prefix="fl"/>
+  <xacro:caster_wheel_transmission prefix="fr"/>
+  <transmission name="br_back_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="br_back_wheel_joint">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="br_back_wheel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+  <transmission name="bl_back_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="bl_back_wheel_joint">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="bl_back_wheel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
   <link name="torso_link">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0.50159"/>
+      <origin rpy="0 0 -1.57079632679" xyz="-0.2162 0.2162 -0.33965"/>
       <geometry>
-        <box size="0.4324 0.4324 1.00318"/>
+        <mesh filename="package://talos_description/meshes/torso/torso_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="white"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0.50159"/>
+      <origin rpy="0 0 0" xyz="0 0 0.51909"/>
       <geometry>
-        <box size="0.4324 0.4324 1.00318"/>
+        <box size="0.4324 0.4324 1.03818"/>
       </geometry>
     </collision>
     <inertial>
       <mass value="5.2"/>
-      <inertia ixx="0.517113944707" ixy="0.0" ixz="0.0" iyy="0.162040458667" iyz="0.0" izz="0.517113944707"/>
+      <inertia ixx="0.548074571373" ixy="0.0" ixz="0.0" iyy="0.162040458667" iyz="0.0" izz="0.548074571373"/>
     </inertial>
   </link>
   <joint name="base_to_torso" type="revolute">
@@ -135,20 +285,22 @@
     <axis xyz="0 0 1"/>
     <parent link="base_link"/>
     <child link="torso_link"/>
-    <origin rpy="0 0 0" xyz="0 0 0.37817"/>
+    <origin rpy="0 0 3.14159265359" xyz="0 0 0.37817"/>
     <!--<origin xyz="0 0 ${base_height}" rpy="0 0 0"/>-->
   </joint>
   <transmission name="base_to_torso_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="base_to_torso"/>
-    <actuator name="base_to_torso_motor">
+    <joint name="base_to_torso">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="base_to_torso_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <link name="arm_shoulder_link">
     <visual>
-      <origin rpy="1.57079632679 0 1.57079632679" xyz="0 -0.035 -0.11"/>
+      <origin rpy="1.57079632679 0 1.57079632679" xyz="-0.053175 -0.035 -0.11"/>
       <geometry>
         <mesh filename="package://talos_description/meshes/arm/shoulder_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
@@ -265,15 +417,15 @@
     <axis xyz="0 0 1"/>
     <parent link="torso_link"/>
     <child link="arm_shoulder_link"/>
-    <origin rpy="0 0 0" xyz="0.2162 0 0.89318"/>
-    <!--<origin xyz="${body_width/2} 0 ${body_height - shoulder_height/2}" rpy="0 0 0"/>-->
+    <!-- <xacro:insert_block name="origin"/> -->
+    <origin rpy="0 0 0" xyz="0.276375 -0.1517 0.81818"/>
   </joint>
   <joint name="arm_shoulder_to_arm_upper_arm" type="revolute">
     <limit effort="1000.0" lower="-0.785398163397" upper="0.785398163397" velocity="1.0"/>
     <axis xyz="1 0 0"/>
     <parent link="arm_shoulder_link"/>
     <child link="arm_upper_arm_link"/>
-    <origin rpy="0 0 0" xyz="0.053175 0.095 0"/>
+    <origin rpy="0 0 0" xyz="0 0.095 0"/>
   </joint>
   <joint name="arm_upper_arm_to_arm_elbow_bracket" type="revolute">
     <limit effort="1000.0" lower="-0.785398163397" upper="0.785398163397" velocity="1.0"/>
@@ -305,50 +457,62 @@
   </joint>
   <transmission name="torso_to_arm_shoulder_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="torso_to_arm_shoulder"/>
-    <actuator name="torso_to_shoulder_motor">
+    <joint name="torso_to_arm_shoulder">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="torso_to_shoulder_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="arm_shoulder_to_arm_upper_arm_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="arm_shoulder_to_arm_upper_arm"/>
-    <actuator name="arm_shoulder_to_arm_upper_arm_motor">
+    <joint name="arm_shoulder_to_arm_upper_arm">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arm_shoulder_to_arm_upper_arm_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="arm_upper_arm_to_arm_elbow_bracket_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="arm_upper_arm_to_arm_elbow_bracket"/>
-    <actuator name="arm_upper_arm_to_arm_elbow_motor">
+    <joint name="arm_upper_arm_to_arm_elbow_bracket">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arm_upper_arm_to_arm_elbow_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="arm_elbow_bracket_to_arm_elbow_block_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="arm_elbow_bracket_to_arm_elbow_block"/>
-    <actuator name="arm_elbow_bracket_to_arm_elbow_block_motor">
+    <joint name="arm_elbow_bracket_to_arm_elbow_block">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arm_elbow_bracket_to_arm_elbow_block_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="arm_elbow_block_to_arm_lower_arm_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="arm_elbow_block_to_arm_lower_arm"/>
-    <actuator name="arm_elbow_block_to_arm_lower_arm_motor">
+    <joint name="arm_elbow_block_to_arm_lower_arm">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arm_elbow_block_to_arm_lower_arm_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="arm_lower_arm_to_arm_wrist_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="arm_lower_arm_to_arm_wrist"/>
-    <actuator name="arm_lower_arm_to_arm_wrist_motor">
+    <joint name="arm_lower_arm_to_arm_wrist">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arm_lower_arm_to_arm_wrist_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <link name="gripper_base_link">
@@ -360,9 +524,9 @@
       <material name="white"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0.04158 -0.04445"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0.04158 0"/>
       <geometry>
-        <box size="0.0889 0.08316 0.0889"/>
+        <cylinder length="0.08316" radius="0.04445"/>
       </geometry>
     </collision>
     <inertial>
@@ -379,10 +543,9 @@
       <material name="white"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0.072645 0"/>
+      <origin rpy="0 -1.57079632679 0" xyz="0.021415 0 -0.0555625"/>
       <geometry>
-        <box size="0.04283 0.14529 0.0862"/>
-        <!-- will probably need a better collision element-->
+        <mesh filename="package://talos_description/meshes/gripper/stationary_claw_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -399,9 +562,9 @@
       <material name="white"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0.02769 0"/>
+      <origin rpy="0 3.14159265359 0" xyz="0.028035 -0.01 0.025"/>
       <geometry>
-        <box size="0.0635 0.07238 0.14"/>
+        <mesh filename="package://talos_description/meshes/gripper/movable_claw_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -431,19 +594,89 @@
   </joint>
   <transmission name="arm_wrist_to_gripper_base_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="arm_wrist_to_gripper_base"/>
-    <actuator name="arm_wrist_to_gripper_base_motor">
+    <joint name="arm_wrist_to_gripper_base">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arm_wrist_to_gripper_base_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <transmission name="gripper_stationary_claw_to_gripper_movable_claw_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="gripper_stationary_claw_to_gripper_movable_claw"/>
-    <actuator name="gripper_stationary_claw_to_gripper_movable_claw_motor">
+    <joint name="gripper_stationary_claw_to_gripper_movable_claw">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="gripper_stationary_claw_to_gripper_movable_claw_motor">
       <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
+  <link name="talos_head_link">
+    <mass value="0.2"/>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="9.2592592593e-06" ixy="0.0" ixz="0.0" iyy="9.2592592593e-06" iyz="0.0" izz="9.2592592593e-06"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0.075 0"/>
+      <geometry>
+        <mesh filename="package://talos_description/urdf/head/head.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://talos_description/urdf/head/head.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="talos_neck_link">
+    <mass value="0.2"/>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="9.2592592593e-06" ixy="0.0" ixz="0.0" iyy="9.2592592593e-06" iyz="0.0" izz="9.2592592593e-06"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 -0.261799387799 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://talos_description/urdf/head/neck.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://talos_description/urdf/head/neck.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="talos_head_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <child link="talos_head_link"/>
+    <parent link="talos_neck_link"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <!-- <limit effort="100"
+                          velocity="100" />
+                   <joint_properties damping="0.0"
+                                     friction="0.0" /> -->
+  </joint>
+  <joint name="talos_neck_joint" type="fixed">
+    <origin rpy="1.57079632679 0 3.14159265359" xyz="0 0 0.95318"/>
+    <child link="talos_neck_link"/>
+    <parent link="torso_link"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <!-- <limit effort="100"
+                          velocity="100" />
+                   <joint_properties damping="0.0"
+                                     friction="0.0" /> -->
+  </joint>
+  <gazebo reference="talos_head_link">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+  <gazebo reference="talos_neck_link">
+    <selfCollide>true</selfCollide>
+  </gazebo>
 </robot>
 
