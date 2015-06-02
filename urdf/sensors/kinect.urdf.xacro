@@ -10,7 +10,7 @@
     <link name="camera_link">
         <inertial>
            <mass value="0.1" />
-           <origin xyz="0 0 0" rpy="0 0 0"/>
+           <xacro:insert_block name="origin"/>
            <inertia ixx="0.01"  ixy="0.0"  ixz="0.0"
                  iyy="0.01"  iyz="0.0"
                  izz="0.01" />
@@ -32,7 +32,7 @@
     </link>
 
     <joint name="kinect_joint" type="fixed">
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${PI} 0 ${PI}"/>
         <parent link="${parent}"/>
         <child link="camera_link"/>
     </joint>
