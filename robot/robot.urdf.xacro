@@ -11,6 +11,7 @@
 	<xacro:include filename="$(find talos_description)/urdf/arm/arm.urdf.xacro" />
 	<xacro:include filename="$(find talos_description)/urdf/gripper/gripper.urdf.xacro" />
         <xacro:include filename="$(find talos_description)/urdf/head/head.urdf.xacro" />
+        <xacro:include filename="$(find talos_description)/urdf/sensors/sensors.urdf.xacro" />
 
 	<xacro:base name="base"/>
 
@@ -26,6 +27,9 @@
         <xacro:head prefix="" parent="torso_link">
                 <origin xyz="0 0 ${torso_height -neck_offset}" rpy="${PI/2} 0 ${PI}"/>
         </xacro:head>
+
+        <!-- Add sensors to talos -->
+        <xacro:talos_sensors/>
 
 
 </robot>
