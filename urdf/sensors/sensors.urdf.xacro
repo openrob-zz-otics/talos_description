@@ -4,13 +4,13 @@
 
   <xacro:include filename="$(find talos_description)/urdf/sensors/hokuyo.urdf.xacro" />
 
-  <xacro:property name="hokuyo_y_offset" value="-0.33"/>
+  <xacro:property name="hokuyo_y_offset" value="-0.35"/>
   <xacro:property name="hokuyo_z_offset" value="0.26"/>
   <xacro:property name="hokuyo_x_offset" value="0"/>
 
   <xacro:macro name="talos_sensors">
-      <xacro:hokuyo name="hokuyo" parent="base" ros_topic="base_scan" update_rate="50" min_angle="0" max_angle="180">
-          <origin xyz="${hokuyo_x_offset} ${hokuyo_y_offset} ${hokuyo_z_offset}" rpy="0 0 0"/>
+      <xacro:hokuyo name="hokuyo" parent="base" ros_topic="base_scan" update_rate="50" min_angle="-1.570796" max_angle="1.570796">
+          <origin xyz="${hokuyo_x_offset} ${hokuyo_y_offset} ${hokuyo_z_offset}" rpy="0 0 -${PI/2}"/>
       </xacro:hokuyo>
   </xacro:macro>
 
