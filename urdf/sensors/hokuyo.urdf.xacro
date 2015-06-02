@@ -7,7 +7,7 @@
   <xacro:macro name="hokuyo" params="name parent *origin ros_topic update_rate min_angle max_angle">
     <joint name="${name}_joint" type="fixed">
       <axis xyz="0 1 0" />
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <xacro:insert_block name="origin" />
       <parent link="${parent}_link"/>
       <child link="${name}_link"/>
     </joint>
@@ -18,10 +18,11 @@
         <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001" />
       </inertial>
       <visual>
-         <xacro:insert_block name="origin" />
+         <origin xyz="0 0 0" rpy="0 0 0"/>
          <geometry><mesh filename="package://talos_description/urdf/sensors/hokuyo.dae"/></geometry>
       </visual>
       <collision>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
          <geometry><mesh filename="package://talos_description/urdf/sensors/hokuyo.dae"/></geometry>
       </collision>
     </link>
