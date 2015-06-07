@@ -11,7 +11,7 @@
                   <mass value="${back_wheel_mass}"/>
                    <xacro:inertial_template mass="${back_wheel_mass}" length="${back_wheel_width}" width="${back_wheel_radius}" height="${back_wheel_width}"/>
 		  <visual>
-			<origin xyz="${-back_wheel_width/2} ${-back_wheel_radius} ${-back_wheel_radius}" rpy="0 0 0"/>
+			<origin xyz="${-back_wheel_width/2 - 0.003} ${-back_wheel_radius} ${-back_wheel_radius}" rpy="0 0 0"/>
 			<geometry>
                           <!--<cylinder length="${back_wheel_width}" radius="${back_wheel_radius}" />-->
 			  <mesh filename="package://talos_description/meshes/wheel/back_wheel.stl" scale="${scale} ${scale} ${scale}" />

@@ -3,7 +3,7 @@
 
 	<!--need to update caster and caster wheel masses-->
 	<xacro:property name="caster_wheel_radius" value="0.04435" />
-	<xacro:property name="caster_wheel_width" value="0.0381" />
+	<xacro:property name="caster_wheel_width" value="0.02755" />
 	<xacro:property name="caster_wheel_mass" value="1.20" />
 	<xacro:property name="caster_width" value="0.06274" />
 	<xacro:property name="caster_length" value="0.07339" />
@@ -39,17 +39,22 @@
  		  <mass value="${caster_wheel_mass}"/>
                    <xacro:inertial_template mass="${caster_mass}" length="${caster_length}" width="${caster_width}" height="${caster_height}"/>
 		  <visual>
-			<origin xyz="${-caster_width/2} ${-caster_horizontal_offset+caster_horizontal_offset_inc_guess} ${-caster_vertical_offset-caster_vertical_offset_inc_guess} " rpy="0 0 ${-PI/2}"/>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
                           <mesh filename="package://talos_description/meshes/wheel/caster.stl" scale="${scale} ${scale} ${scale}" />
 			</geometry>
 			<material name="white"/>
 		  </visual>
 		  <collision>
-                        <origin xyz="0 ${-caster_horizontal_offset_inc_guess} ${caster_height/2 - caster_vertical_offset - caster_vertical_offset_inc_guess}" rpy="0 0 0"/>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+                          <mesh filename="package://talos_description/meshes/wheel/caster.stl" scale="${scale} ${scale} ${scale}" />
+			</geometry>
+			<material name="white"/>
+                        <!--<origin xyz="0 ${-caster_horizontal_offset_inc_guess} ${caster_height/2 - caster_vertical_offset - caster_vertical_offset_inc_guess}" rpy="0 0 0"/>
 			<geometry>
 			  <box size="${caster_width} ${caster_length} ${caster_height}" />
-			</geometry>
+			</geometry>-->
 		  </collision>
 		</link>
 

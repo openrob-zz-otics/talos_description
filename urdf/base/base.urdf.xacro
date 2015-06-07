@@ -19,7 +19,6 @@
 	
 		<link name="${name}_link">
 		  <visual>
-			<origin xyz="${base_width/2} ${base_width/2} 0" rpy="0 0 ${PI}"/>
 			<geometry>
 			  <mesh filename="package://talos_description/meshes/base/base_link.stl" scale="${scale} ${scale} ${scale}"/>
 			</geometry>
