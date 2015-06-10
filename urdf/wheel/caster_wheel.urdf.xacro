@@ -19,7 +19,7 @@
 	
 		<link name="${prefix}_caster_wheel_link">
                   <mass value="${caster_wheel_mass}"/>
-                   <xacro:inertial_template mass="${caster_wheel_mass}" length="${caster_wheel_width}" width="${caster_wheel_radius}" height="${caster_wheel_width}"/>
+                   <xacro:inertial_template mass="${caster_wheel_mass*10}" length="${caster_wheel_width*10}" width="${caster_wheel_radius*10}" height="${caster_wheel_width*10}"/>
 		  <visual>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
@@ -76,8 +76,8 @@
 
                 <gazebo reference="${prefix}_caster_wheel_link">
                      <!-- <selfCollide>true</selfCollide> -->
-		     <mu1 value="0.0"/>
-	             <mu2 value="0.0"/>
+		     <mu1 value="0.3"/>
+	             <mu2 value="0.3"/>
 		     <!-- <kp value="100000.0" />
 	             <kd value="1.0" /> -->
 	       </gazebo>
