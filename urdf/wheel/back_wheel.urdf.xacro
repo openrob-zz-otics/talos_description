@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<xacro:property name="back_wheel_radius" value="0.0762" />
-	<xacro:property name="back_wheel_width" value="0.0127" />
+	<xacro:property name="back_wheel_radius" value="0.072805" />
+	<xacro:property name="back_wheel_height" value="0.0381" />
 	<xacro:property name="back_wheel_mass" value="1.20" />
 	
 	<xacro:macro name="back_wheel" params="prefix *origin parent">
 	
 		<link name="${prefix}_back_wheel_link">
                   <mass value="${back_wheel_mass}"/>
-                   <xacro:inertial_template mass="${back_wheel_mass}" length="${back_wheel_width}" width="${back_wheel_radius}" height="${back_wheel_width}"/>
+                   <xacro:inertial_template mass="${back_wheel_mass}" length="${back_wheel_height}" width="${back_wheel_radius}" height="${back_wheel_height}"/>
 		  <visual>
-			<origin xyz="${-back_wheel_width/2 - 0.003} ${-back_wheel_radius} ${-back_wheel_radius}" rpy="0 0 0"/>
+			<origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
 			<geometry>
-                          <!--<cylinder length="${back_wheel_width}" radius="${back_wheel_radius}" />-->
-			  <mesh filename="package://talos_description/meshes/wheel/back_wheel.stl" scale="${scale} ${scale} ${scale}" />
+                          <cylinder length="${back_wheel_height}" radius="${back_wheel_radius}" />
+			  <!-- <mesh filename="package://talos_description/meshes/wheel/back_wheel.stl" scale="${scale} ${scale} ${scale}" /> -->
 			</geometry>
 			<material name="white"/>
 		  </visual>
 		  <collision>
                         <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
 			<geometry>
-			  <cylinder length="${back_wheel_width}" radius="${back_wheel_radius}" />
+			  <cylinder length="${back_wheel_height}" radius="${back_wheel_radius}" />
 			</geometry>
 		  </collision>
 		</link>
