@@ -84,7 +84,7 @@
 
 		<link name="${name}_elbow_bracket_link">
 		 <visual>
-		  <origin xyz="${elbow_bracket_width/2} 0 ${-elbow_bracket_height/2}" rpy="0 0 ${PI/2}"/>
+		  <origin xyz="0 0 0" rpy="0 0 0"/>
 		  <geometry>
 			 <mesh filename="package://talos_description/meshes/arm/elbow_bracket_link.stl" scale="${scale} ${scale} ${scale}"/>
 		  </geometry>
