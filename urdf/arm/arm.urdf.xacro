@@ -35,7 +35,7 @@
 	<xacro:property name="lower_arm_length" value="0.37" />
 	<xacro:property name="lower_arm_offset" value="0.066" />
 	<xacro:property name="lower_arm_wrist_offset" value="0.015" />
-	<!--<xacro:property name="lower_arm_short_length" value="0.345" /> --><!--X Y--> <!-- theirs ours-->
+	<xacro:property name="lower_arm_short_length" value="0.28" />
 	<xacro:property name="lower_arm_width" value="0.03" /> <!--Z X-->
 	<xacro:property name="lower_arm_height" value="0.14" /> <!--Y Z-->
 	<xacro:property name="lower_arm_mass" value="0.22" />
@@ -50,7 +50,6 @@
 	
 		<link name="${name}_shoulder_link">
 		 <visual>
-		  <origin xyz="-${shoulder_width/2} ${-shoulder_offset} ${-shoulder_height/2}" rpy="${PI/2} 0 ${PI/2}"/>
 		  <geometry>
 			 <mesh filename="package://talos_description/meshes/arm/shoulder_link.stl" scale="${scale} ${scale} ${scale}"/>
 		  </geometry>
@@ -118,7 +117,6 @@
 
 		<link name="${name}_lower_arm_link">
 		 <visual>
-		  <origin xyz="-${lower_arm_width/2} ${lower_arm_length-lower_arm_offset} ${lower_arm_height/2}" rpy="${-PI/2} 0 ${-PI/2}"/>
 		  <geometry>
 			 <mesh filename="package://talos_description/meshes/arm/lower_arm_link.stl" scale="${scale} ${scale} ${scale}"/>
 		  </geometry>
@@ -196,7 +194,7 @@
 		 <axis xyz="1 0 0"/>
 		 <parent link="${name}_lower_arm_link" />	
 		 <child link="${name}_wrist_link" />
-		 <origin xyz="0 ${lower_arm_length-lower_arm_offset-lower_arm_wrist_offset} 0" rpy="0 0 0"/> 
+		 <origin xyz="0 ${lower_arm_short_length} 0" rpy="0 0 0"/> 
 		</joint>
 
           <xacro:talos_arm_transmission prefix=""/>
