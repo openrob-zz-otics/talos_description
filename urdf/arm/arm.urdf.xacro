@@ -167,6 +167,7 @@
 
 		<joint name="${name}_upper_arm_to_${name}_elbow_bracket" type="revolute">
 		 <limit velocity="1.0" effort="1000.0" lower="${-PI/4}" upper="${PI/4}"/>
+		 <mimic joint="${name}_shoulder_to_${name}_upper_arm" multiplier="-1" />
 		 <axis xyz="1 0 0"/>
 		 <parent link="${name}_upper_arm_link" />	
 		 <child link="${name}_elbow_bracket_link" />
