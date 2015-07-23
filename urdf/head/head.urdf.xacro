@@ -35,7 +35,7 @@
                   <mass value="${head_mass}"/>
                    <xacro:inertial_template mass="${head_mass}" length="${head_mass/12}" width="${head_mass/12}" height="${head_mass/12}"/>
 		  <visual>
-			<origin xyz="0 0 0" rpy="0 ${PI/4} 0"/>
+			<origin xyz="0 0 0" rpy="0 ${5*PI/4} 0"/>
 			<geometry>
                            <mesh filename="package://talos_description/meshes/head/pan_neck.stl" scale="${scale} ${scale} ${scale}" /> 
 			</geometry>
