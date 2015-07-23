@@ -17,14 +17,14 @@
 		  <visual>
 			<origin xyz="0 0 0" rpy="0 -${neck_alignment} 0"/>
 			<geometry>
-                           <mesh filename="package://talos_description/urdf/head/stationary_neck.stl" scale="${scale} ${scale} ${scale}" /> 
+                           <mesh filename="package://talos_description/meshes/head/stationary_neck.stl" scale="${scale} ${scale} ${scale}" /> 
 			</geometry>
 			<material name="white"/>
 		  </visual>
 		  <collision>
                         <origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-			  <mesh filename="package://talos_description/urdf/head/stationary_neck.stl" scale="${scale} ${scale} ${scale}" /> 
+			  <mesh filename="package://talos_description/meshes/head/stationary_neck.stl" scale="${scale} ${scale} ${scale}" /> 
 			</geometry>
 		  </collision>
 		</link>
@@ -36,14 +36,14 @@
 		  <visual>
 			<origin xyz="0 0 0" rpy="0 -${neck_alignment} 0"/>
 			<geometry>
-                           <mesh filename="package://talos_description/urdf/head/pan_neck.stl" scale="${scale} ${scale} ${scale}" /> 
+                           <mesh filename="package://talos_description/meshes/head/pan_neck.stl" scale="${scale} ${scale} ${scale}" /> 
 			</geometry>
 			<material name="white"/>
 		  </visual>
 		  <collision>
                         <origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-			  <mesh filename="package://talos_description/urdf/head/pan_neck.stl" scale="${scale} ${scale} ${scale}" /> 
+			  <mesh filename="package://talos_description/meshes/head/pan_neck.stl" scale="${scale} ${scale} ${scale}" /> 
 			</geometry>
 		  </collision>
 		</link>
@@ -55,14 +55,14 @@
 		  <visual>
 			<origin xyz="0 ${head_offset} 0" rpy="0 0 0"/>
 			<geometry>
-                           <mesh filename="package://talos_description/urdf/head/tilt_head.stl" scale="${scale} ${scale} ${scale}" /> 
+                           <mesh filename="package://talos_description/meshes/head/tilt_head.stl" scale="${scale} ${scale} ${scale}" /> 
 			</geometry>
 			<material name="white"/>
 		  </visual>
 		  <collision>
                         <origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-			  <mesh filename="package://talos_description/urdf/head/tilt_head.stl" scale="${scale} ${scale} ${scale}" /> 
+			  <mesh filename="package://talos_description/meshes/head/tilt_head.stl" scale="${scale} ${scale} ${scale}" /> 
 			</geometry>
 		  </collision>
 		</link>
@@ -73,6 +73,7 @@
                    <child link="${prefix}talos_tilt_head_link"/>
                    <parent link="${prefix}talos_pan_neck_link"/>
                    <axis xyz="0 1 0" rpy="0 0 0"/>
+                   <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>
                    <!-- <limit effort="100"
                           velocity="100" />
                    <joint_properties damping="0.0"
@@ -82,7 +83,7 @@
                <!-- Join stationary neck to torso (fixed) -->
                <joint name="${prefix}talos_neck_joint" type="fixed">
                    <xacro:insert_block name="origin"/>
-                   <child link="${prefix}talos_neck_link"/>
+                   <child link="${prefix}talos_stationary_neck_link"/>
                    <parent link="${parent}"/>
                    <axis xyz="0 1 0" rpy="0 0 0"/>
                    <!-- <limit effort="100"
@@ -94,7 +95,7 @@
                <!-- Join pan neck to stationary neck (rotational by 360) -->
                <joint name="${prefix}talos_pan_neck_joint" type="continuous">
                    <origin xyz="0 0 0" rpy="0 0 0"/>
-                   <child link="${prefix}talos_neck_link"/>
+                   <child link="${prefix}talos_pan_neck_link"/>
                    <parent link="${prefix}talos_stationary_neck_link"/>
                    <axis xyz="0 1 0" rpy="0 0 0"/>
                    <!-- <limit effort="100"

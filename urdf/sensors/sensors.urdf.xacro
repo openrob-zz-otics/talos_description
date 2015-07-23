@@ -18,7 +18,7 @@
       <xacro:hokuyo name="hokuyo" parent="base" ros_topic="base_scan" update_rate="50" min_angle="-1.570796" max_angle="1.570796">
           <origin xyz="${hokuyo_x_offset} ${hokuyo_y_offset} ${hokuyo_z_offset}" rpy="0 0 -${PI/2}"/>
       </xacro:hokuyo>
-      <xacro:kinect parent="talos_head_link">
+      <xacro:kinect parent="talos_tilt_head_link">
           <origin xyz="${kinect_x_offset} ${kinect_y_offset} ${kinect_z_offset}" rpy="0 0 0"/>
       </xacro:kinect>
 
