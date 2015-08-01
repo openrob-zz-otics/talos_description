@@ -167,7 +167,7 @@
 
 		<joint name="${name}_upper_arm_to_${name}_elbow_bracket" type="revolute">
 		 <limit velocity="1.0" effort="1000.0" lower="${-PI/4}" upper="${PI/4}"/>
-		 <mimic joint="${name}_shoulder_to_${name}_upper_arm" multiplier="-1" />
+		 <!--<mimic joint="${name}_shoulder_to_${name}_upper_arm" multiplier="-1" />-->
 		 <axis xyz="1 0 0"/>
 		 <parent link="${name}_upper_arm_link" />	
 		 <child link="${name}_elbow_bracket_link" />
@@ -197,6 +197,14 @@
 		 <child link="${name}_wrist_link" />
 		 <origin xyz="0 ${lower_arm_short_length} 0" rpy="0 0 0"/> 
 		</joint>
+
+             <gazebo>
+	       <plugin name="mimic_plugin" filename="libtalos_description.so">
+                <joint>${name}_upper_arm_to_${name}_elbow_bracket</joint>
+                <mimicJoint>${name}_shoulder_to_${name}_upper_arm</mimicJoint>
+                <multiplier>-1.0</multiplier>
+               </plugin>
+              </gazebo>
 
           <xacro:talos_arm_transmission prefix=""/>
 	</xacro:macro>
