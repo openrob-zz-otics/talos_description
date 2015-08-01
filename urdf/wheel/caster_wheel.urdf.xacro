@@ -63,6 +63,7 @@
                    <xacro:insert_block name="origin"/>
                    <child link="${prefix}_caster_link"/>
                    <parent link="${parent}"/>
+		<!-- <dynamics damping="50.0" friction="50.0"/>-->
                </joint>
 
 		<joint name="${prefix}_caster_to_wheel" type="continuous">
@@ -72,20 +73,21 @@
 		  <joint_properties damping="0.0" friction="0.0" />
 		  <child link="${prefix}_caster_wheel_link"/>
                   <parent link="${prefix}_caster_link"/>
+		  <!--<dynamics damping="50.0" friction="50.0"/>-->
 		</joint>
 
                 <gazebo reference="${prefix}_caster_wheel_link">
                      <!-- <selfCollide>true</selfCollide> -->
-		     <mu1 value="0.0"/>
-	             <mu2 value="0.0"/>
+		     <mu1 value="200.0"/>
+	             <mu2 value="200.0"/>
 		     <!-- <kp value="100000.0" />
 	             <kd value="1.0" /> -->
 	       </gazebo>
 
                <gazebo reference="${prefix}_caster_link">
                      <!-- <selfCollide>true</selfCollide> -->
-		     <mu1 value="0.0"/>
-	             <mu2 value="0.0"/>
+		     <mu1 value="200.0"/>
+	             <mu2 value="200.0"/>
 		     <!-- <kp value="100000.0" />
 	             <kd value="1.0" /> -->
 	       </gazebo>
