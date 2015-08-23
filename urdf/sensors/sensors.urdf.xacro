@@ -10,16 +10,20 @@
   <xacro:property name="hokuyo_z_offset" value="0.26"/>
   <xacro:property name="hokuyo_x_offset" value="0"/>
 
-  <xacro:property name="kinect_y_offset" value="0"/>
-  <xacro:property name="kinect_z_offset" value="0"/>
+  <xacro:property name="kinect_y_offset" value="${0.243}"/>
+  <xacro:property name="kinect_z_offset" value="${-0.11}"/>
   <xacro:property name="kinect_x_offset" value="0"/>
+
+  <xacro:property name="kinect_roll_offset" value="${3*PI/2}"/>
+  <xacro:property name="kinect_pitch_offset" value="${PI/2}"/>
+  <xacro:property name="kinect_yaw_offset" value="0"/>
 
   <xacro:macro name="talos_sensors">
       <xacro:hokuyo name="hokuyo" parent="base" ros_topic="base_scan" update_rate="50" min_angle="-1.570796" max_angle="1.570796">
           <origin xyz="${hokuyo_x_offset} ${hokuyo_y_offset} ${hokuyo_z_offset}" rpy="0 0 -${PI/2}"/>
       </xacro:hokuyo>
       <xacro:kinect parent="talos_head_link">
-          <origin xyz="${kinect_x_offset} ${kinect_y_offset} ${kinect_z_offset}" rpy="0 0 0"/>
+          <origin xyz="${kinect_x_offset} ${kinect_y_offset} ${kinect_z_offset}" rpy="${kinect_roll_offset} ${kinect_pitch_offset} ${kinect_yaw_offset}"/>
       </xacro:kinect>
 
   </xacro:macro>
