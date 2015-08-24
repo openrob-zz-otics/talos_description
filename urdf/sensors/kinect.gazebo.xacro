@@ -43,6 +43,7 @@
         <distortion_k3>0.0</distortion_k3>
         <distortion_t1>0.0</distortion_t1>
         <distortion_t2>0.0</distortion_t2>
+        <pointCloudCutoff>0.4</pointCloudCutoff>
         <pointCloudCutoffMax>0.4</pointCloudCutoffMax>
       </plugin>
     </sensor>
