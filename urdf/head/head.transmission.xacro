@@ -3,28 +3,27 @@
 
   <xacro:macro name="talos_head_transmission" params="prefix">
 
-    <transmission name="${prefix}talos_head_joint_trans">
+    <transmission name="${prefix}talos_pan_neck_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="${prefix}talos_head_joint">
+    <joint name="${prefix}talos_pan_neck_joint">
        <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
-    <actuator name="${prefix}talos_head_joint_motor">
+    <actuator name="${prefix}talos_pan_neck_joint_motor">
       <mechanicalReduction>1</mechanicalReduction>
       <hardwareInterface>PositionJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   
-    <transmission name="${prefix}talos_neck_joint_trans">
+   <transmission name="${prefix}talos_tilt_head_joint_trans">
       <type>transmission_interface/SimpleTransmission</type>
-      <joint name="${prefix}talos_neck_joint">
+      <joint name="${prefix}talos_tilt_head_joint">
         <hardwareInterface>PositionJointInterface</hardwareInterface>
       </joint>
-      <actuator name="${prefix}talos_neck_joint_motor">
+      <actuator name="${prefix}talos_tilt_head_joint_motor">
         <mechanicalReduction>1</mechanicalReduction>
         <hardwareInterface>PositionJointInterface</hardwareInterface>
       </actuator>
     </transmission>
 
   </xacro:macro>
-
 </robot>
