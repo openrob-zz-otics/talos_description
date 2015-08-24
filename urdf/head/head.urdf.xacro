@@ -105,7 +105,7 @@
                                      friction="0.0" /> -->
                </joint>
 
-               <gazebo reference="${prefix}talos_pan_neck_link">
+               <!-- <gazebo reference="${prefix}talos_pan_neck_link">
                      <selfCollide>true</selfCollide>
 	       </gazebo>
 
@@ -115,7 +115,7 @@
 
                <gazebo reference="${prefix}talos_stationary_neck_link">
                      <selfCollide>true</selfCollide>
-	       </gazebo>
+	       </gazebo> TODO: put inside .gazebo file -->
 
          <xacro:talos_head_transmission prefix=""/>
 
