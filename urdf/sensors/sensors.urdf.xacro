@@ -10,8 +10,8 @@
   <xacro:property name="hokuyo_z_offset" value="0.26"/>
   <xacro:property name="hokuyo_x_offset" value="0"/>
 
-  <xacro:property name="kinect_y_offset" value="0"/>
-  <xacro:property name="kinect_z_offset" value="0"/>
+  <xacro:property name="kinect_y_offset" value="0.24"/>
+  <xacro:property name="kinect_z_offset" value="-0.125"/>
   <xacro:property name="kinect_x_offset" value="0"/>
 
   <xacro:macro name="talos_sensors">
@@ -19,7 +19,7 @@
           <origin xyz="${hokuyo_x_offset} ${hokuyo_y_offset} ${hokuyo_z_offset}" rpy="0 0 -${PI/2}"/>
       </xacro:hokuyo>
       <xacro:kinect parent="talos_tilt_head_link">
-          <origin xyz="${kinect_x_offset} ${kinect_y_offset} ${kinect_z_offset}" rpy="0 0 0"/>
+          <origin xyz="${kinect_x_offset} ${kinect_y_offset} ${kinect_z_offset}" rpy="0 ${PI/2} ${PI/2}"/>
       </xacro:kinect>
 
   </xacro:macro>
