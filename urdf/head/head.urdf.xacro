@@ -75,8 +75,9 @@
                    <origin xyz="0 ${pan_neck_to_tilt_head_y_offset} ${pan_neck_to_tilt_head_z_offset}" rpy="0 0 0"/>
                    <child link="${prefix}talos_tilt_head_link"/>
                    <parent link="${prefix}talos_pan_neck_link"/>
-                   <axis xyz="0 1 0" rpy="0 0 0"/>
-                   <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>
+                   <axis xyz="1 0 0" rpy="0 0 0"/>
+		   <limit effort="1000.0" lower="-0.35" upper="0.19" velocity="0.5"/>
+                   <!-- <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>-->
                    <!-- <limit effort="100"
                           velocity="100" />
                    <joint_properties damping="0.0"
