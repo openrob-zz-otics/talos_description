@@ -6,6 +6,8 @@
         <xacro:property name="head_offset" value="0.075" />
         <xacro:property name="neck_alignment" value="${PI/12}" />
         <xacro:property name="pan_rotation_alignment" value="${PI/8}"/>
+        <xacro:property name="pan_neck_to_tilt_head_z_offset" value="0.1638"/>
+        <xacro:property name="pan_neck_to_tilt_head_y_offset" value="0.05318"/>        
 
         <xacro:include filename="$(find talos_description)/urdf/head/head.transmission.xacro" />
 	
@@ -16,7 +18,7 @@
                   <mass value="${head_mass}"/>
                    <xacro:inertial_template mass="${head_mass}" length="${head_mass/12}" width="${head_mass/12}" height="${head_mass/12}"/>
 		  <visual>
-			<origin xyz="0 0 0" rpy="0 -${neck_alignment} 0"/>
+			<origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
 			<geometry>
                            <mesh filename="package://talos_description/meshes/head/stationary_neck.stl" scale="${scale} ${scale} ${scale}" /> 
 			</geometry>
@@ -35,7 +37,7 @@
                   <mass value="${head_mass}"/>
                    <xacro:inertial_template mass="${head_mass}" length="${head_mass/12}" width="${head_mass/12}" height="${head_mass/12}"/>
 		  <visual>
-			<origin xyz="0 0 0" rpy="0 ${5*PI/4} 0"/>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
                            <mesh filename="package://talos_description/meshes/head/pan_neck.stl" scale="${scale} ${scale} ${scale}" /> 
 			</geometry>
@@ -49,12 +51,12 @@
 		  </collision>
 		</link>
 
-                 <!-- head which attackes to the pan unit, this is the tilt unit -->
+                 <!-- head which attaches to the pan unit, this is the tilt unit -->
 		<link name="${prefix}talos_tilt_head_link">
                   <mass value="${head_mass}"/>
                    <xacro:inertial_template mass="${head_mass}" length="${head_mass/12}" width="${head_mass/12}" height="${head_mass/12}"/>
 		  <visual>
-			<origin xyz="0 ${head_offset} 0" rpy="0 0 0"/>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
                            <mesh filename="package://talos_description/meshes/head/tilt_head.stl" scale="${scale} ${scale} ${scale}" /> 
 			</geometry>
@@ -70,11 +72,12 @@
 
                <!-- Join tilt head to pan neck -->
                <joint name="${prefix}talos_tilt_head_joint" type="revolute">
-                   <origin xyz="0 0 0" rpy="0 0 0"/>
+                   <origin xyz="0 ${pan_neck_to_tilt_head_y_offset} ${pan_neck_to_tilt_head_z_offset}" rpy="0 0 0"/>
                    <child link="${prefix}talos_tilt_head_link"/>
                    <parent link="${prefix}talos_pan_neck_link"/>
-                   <axis xyz="0 1 0" rpy="0 0 0"/>
-                   <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>
+                   <axis xyz="1 0 0" rpy="0 0 0"/>
+		   <limit effort="1000.0" lower="-0.35" upper="0.19" velocity="0.5"/>
+                   <!-- <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>-->
                    <!-- <limit effort="100"
                           velocity="100" />
                    <joint_properties damping="0.0"
@@ -86,7 +89,7 @@
                    <xacro:insert_block name="origin"/>
                    <child link="${prefix}talos_stationary_neck_link"/>
                    <parent link="${parent}"/>
-                   <axis xyz="0 0 1" rpy="0 0 0"/>
+                   <axis xyz="0 0 1" rpy="${PI/2} 0 0"/>
                    <!-- <limit effort="100"
                           velocity="100" />
                    <joint_properties damping="0.0"
@@ -95,7 +98,7 @@
 
                <!-- Join pan neck to stationary neck (rotational by 360) -->
                <joint name="${prefix}talos_pan_neck_joint" type="continuous">
-                   <origin xyz="0 0 0" rpy="0 0 0"/>
+                   <origin xyz="0 0 ${head_offset}" rpy="0 0 0"/>
                    <child link="${prefix}talos_pan_neck_link"/>
                    <parent link="${prefix}talos_stationary_neck_link"/>
                    <axis xyz="0 0 1" rpy="0 0 0"/>

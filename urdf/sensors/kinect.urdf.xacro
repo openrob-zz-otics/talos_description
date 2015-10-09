@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-
+  
   <xacro:include filename="$(find talos_description)/urdf/sensors/kinect.gazebo.xacro" />
+
+  <xacro:property name="kinect_z_offset" value="0.005"/>
+  <xacro:property name="kinect_y_offset" value="0.06"/>
 
   <xacro:macro name="kinect" params="*origin parent">
 
@@ -32,7 +35,7 @@
     </link>
 
     <joint name="kinect_joint" type="fixed">
-        <origin xyz="0 0 0" rpy="${PI} 0 ${PI}"/>
+        <origin xyz="0 ${kinect_y_offset} ${kinect_z_offset}" rpy="0 0 0"/>
         <parent link="${parent}"/>
         <child link="camera_link"/>
     </joint>
